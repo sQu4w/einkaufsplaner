@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="598.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="71.0" prefWidth="601.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="601.0" text="🍲 Rezeptverwaltung ">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="87.0" prefHeight="600.0" prefWidth="551.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="544.0" prefWidth="214.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Rezeptsammlung">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="-10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ListView fx:id="recipeListView" maxHeight="638.0" prefHeight="527.0" prefWidth="181.0" translateX="15.0" />
+                  <Button fx:id="openShoppingListBtn" mnemonicParsing="false" prefWidth="151.0" text="Zur Einkaufsliste">
+                     <VBox.margin>
+                        <Insets left="16.0" right="49.0" top="12.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="544.0" prefWidth="403.0" translateX="30.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="562.0" text="Rezept anlegen / bearbeiten">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Separator prefHeight="18.0" prefWidth="350.0" />
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="350.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="91.0" text="Rezeptname" translateX="-40.0" />
+                        <TextField fx:id="recipeNameTextField" prefWidth="150.0" translateX="-40.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="350.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="91.0" text="Portionen" translateX="-40.0" />
+                        <TextField fx:id="servingsTextField" translateX="-40.0" />
+                     </children>
+                  </HBox>
+                  <Separator prefHeight="30.0" prefWidth="330.0" />
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="411.0">
+                     <children>
+                        <Label prefHeight="30.0" prefWidth="406.0" text="Zutaten" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="179.0" prefWidth="398.0">
+                     <children>
+                        <TableView fx:id="ingredientsTableView" editable="true" prefHeight="179.0" prefWidth="376.0">
+                          <columns>
+                            <TableColumn fx:id="ingredientColumn" prefWidth="250.40000307559967" text="Zutat" />
+                            <TableColumn fx:id="ingredientQuantityColumn" prefWidth="58.40008544921875" text="Menge" />
+                              <TableColumn fx:id="ingredientUnitColumn" minWidth="0.0" prefWidth="60.79998779296875" text="Einheit" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Label contentDisplay="CENTER" prefHeight="30.0" prefWidth="406.0" text="Zubereitung" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="151.0" prefWidth="200.0">
+                     <children>
+                        <TextArea fx:id="preparationTextArea" prefHeight="99.0" prefWidth="393.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="51.0" prefWidth="372.0">
+                     <children>
+                        <Button fx:id="newRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="100.0" text="Neu" />
+                        <Button fx:id="saveRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="100.0" text="Speichern" translateX="-5.0">
+                           <HBox.margin>
+                              <Insets left="8.0" right="-2.0" />
+                           </HBox.margin></Button>
+                        <Button fx:id="updateRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="100.0" text="Ändern">
+                           <HBox.margin>
+                              <Insets left="-1.0" right="2.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="deleteRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="100.0" text="Löschen" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</Pane>
