@@ -23,7 +23,7 @@ public class Article {
         this.unit = unit;
     }
 
-    // Getter & Setter für Status
+    // Getter & Setter für Status, Name, Menge und Einheit
     public boolean isBought() { return bought; }
     public void setBought(boolean bought) { this.bought = bought; }
 

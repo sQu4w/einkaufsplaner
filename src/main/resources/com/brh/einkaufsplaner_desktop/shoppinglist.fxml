@@ -5,17 +5,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:controller="com.brh.einkaufsplaner_desktop.controller.ShoppingListController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER" layoutY="14.0" prefHeight="558.0" prefWidth="711.0">
          <children>
             <TableView fx:id="shoppingItemsTableView" minHeight="152.0" prefHeight="474.0" prefWidth="297.0" HBox.hgrow="NEVER">
               <columns>
-                <TableColumn fx:id="boughtColumn" prefWidth="50.799998462200165" text="Gekauft">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="status" />
-                    </cellValueFactory>
-                </TableColumn>
+                <TableColumn fx:id="boughtColumn" prefWidth="50.799998462200165" text="Gekauft" />
                 <TableColumn fx:id="articleColumn" prefWidth="139.6000099182129" text="Artikel" />
                   <TableColumn fx:id="articleQuantityColumn" minWidth="0.0" prefWidth="49.59991455078125" text="Menge" />
                   <TableColumn fx:id="aticleUnitColumn" minWidth="0.0" prefWidth="69.60002136230469" text="Einheit" />
@@ -126,7 +122,7 @@
                   </HBox>
                   <HBox alignment="BOTTOM_RIGHT" prefHeight="90.0" prefWidth="200.0" translateX="-5.0">
                      <children>
-                        <Button fx:id="openRecipeManagementBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="151.0" text="Zur Rezeptverwaltung">
+                        <Button fx:id="openRecipeManagementBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToRecipeManagement" prefHeight="26.0" prefWidth="151.0" text="Zur Rezeptverwaltung">
                            <HBox.margin>
                               <Insets right="17.0" />
                            </HBox.margin>

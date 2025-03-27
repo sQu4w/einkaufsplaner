@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="356.0" prefWidth="446.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:controller="com.brh.einkaufsplaner_desktop.controller.HomeScreenController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="356.0" prefWidth="446.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
       <VBox alignment="CENTER" layoutX="81.0" prefHeight="356.0" prefWidth="285.0">
          <children>
@@ -29,12 +29,12 @@
             </ImageView>
             <VBox alignment="CENTER" prefHeight="148.0" prefWidth="286.0">
                <children>
-                  <Button fx:id="openShoppingListBtn" mnemonicParsing="false" prefWidth="200.0" text="Einkaufsliste">
+                  <Button fx:id="openShoppingListBtn" mnemonicParsing="false" onAction="#goToShoppingList" prefWidth="200.0" text="Einkaufsliste">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="openRecipeManagementBtn" mnemonicParsing="false" prefWidth="200.0" text="Rezeptverwaltung" />
+                  <Button fx:id="openRecipeManagementBtn" mnemonicParsing="false" onAction="#goToRecipeManagement" prefWidth="200.0" text="Rezeptverwaltung" />
                </children>
             </VBox>
          </children>
