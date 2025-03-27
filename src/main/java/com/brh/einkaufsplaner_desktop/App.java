@@ -22,6 +22,7 @@ public class App extends Application {
         stage.setTitle("Einkaufsplaner");
         stage.setScene(new Scene(root)); // Setze die Szene auf die geladene FXML-Datei
         stage.show();
+        stage.setY(50);
     }
 
     public static void main(String[] args) {

@@ -29,7 +29,10 @@ public class RecipeManagementController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/brh/einkaufsplaner_desktop/shoppinglist.fxml"));
         Parent view = loader.load();
 
+        // Erzeugt das Fenster (Stage) und setzt die Szene auf die geladene FXML-Datei
         Stage window = (Stage) openShoppingListBtn.getScene().getWindow();
+
+        // Zeigt das neue Fenster mit dem geladenen Inhalt
         window.setScene(new Scene(view));
         window.show();
     }

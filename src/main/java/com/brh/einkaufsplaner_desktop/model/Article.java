@@ -1,41 +1,34 @@
 package com.brh.einkaufsplaner_desktop.model;
 
-/**
- * Klasse für Artikel in der Einkaufsliste.
- */
-public class Article {
-    private boolean bought;
-    private String name;
-    private double amount;
-    private String unit;
+import javafx.beans.property.*;
 
-    /**
-     * Konstruktor für einen Artikel.
-     * @param bought Gibt an, ob der Artikel bereits gekauft wurde.
-     * @param name Name des Artikels.
-     * @param amount Menge des Artikels.
-     * @param unit Einheit des Artikels.
-     */
+public class Article {
+
+    private final BooleanProperty bought;
+    private final StringProperty name;
+    private final DoubleProperty amount;
+    private final StringProperty unit;
+
     public Article(boolean bought, String name, double amount, String unit) {
-        this.bought = bought;
-        this.name = name;
-        this.amount = amount;
-        this.unit = unit;
+        this.bought = new SimpleBooleanProperty(bought);
+        this.name = new SimpleStringProperty(name);
+        this.amount = new SimpleDoubleProperty(amount);
+        this.unit = new SimpleStringProperty(unit);
     }
 
-    // Getter & Setter für Status, Name, Menge und Einheit
-    public boolean isBought() { return bought; }
-    public void setBought(boolean bought) { this.bought = bought; }
+    public BooleanProperty boughtProperty() { return bought; }
+    public boolean isBought() { return bought.get(); }
+    public void setBought(boolean bought) { this.bought.set(bought); }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public StringProperty nameProperty() { return name; }
+    public String getName() { return name.get(); }
+    public void setName(String name) { this.name.set(name); }
 
-    public double getAmount() { return amount; }
-    public void setAmount(double amount) { this.amount = amount; }
+    public DoubleProperty amountProperty() { return amount; }
+    public double getAmount() { return amount.get(); }
+    public void setAmount(double amount) { this.amount.set(amount); }
 
-    public String getUnit() { return unit; }
-    public void setUnit(String unit) { this.unit = unit; }
+    public StringProperty unitProperty() { return unit; }
+    public String getUnit() { return unit.get(); }
+    public void setUnit(String unit) { this.unit.set(unit); }
 }
-
-
-

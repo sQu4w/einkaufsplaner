@@ -1,34 +1,28 @@
 package com.brh.einkaufsplaner_desktop.model;
 
-import java.util.List;
+import javafx.beans.property.*;
 
-/**
- * Klasse für Zutaten in der Rezeptverwaltung
- */
 public class Ingredient {
-    private String name;
-    private double amount;
-    private String unit;
 
-    /**
-     * Konstruktor für eine Zutat
-     * @param name Name der Zutat
-     * @param amount Menge der Zutat
-     * @param unit Einheit der Zutat
-     */
+    private final StringProperty name;
+    private final DoubleProperty amount;
+    private final StringProperty unit;
+
     public Ingredient(String name, double amount, String unit) {
-        this.name = name;
-        this.amount = amount;
-        this.unit = unit;
+        this.name = new SimpleStringProperty(name);
+        this.amount = new SimpleDoubleProperty(amount);
+        this.unit = new SimpleStringProperty(unit);
     }
 
-    // Getter & Setter für Name, Menge und Einheit
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
+    public StringProperty nameProperty() { return name; }
+    public String getName() { return name.get(); }
+    public void setName(String name) { this.name.set(name); }
 
-    public double getAmount() {return amount;}
-    public void setAmount(double amount) {this.amount = amount;}
+    public DoubleProperty amountProperty() { return amount; }
+    public double getAmount() { return amount.get(); }
+    public void setAmount(double amount) { this.amount.set(amount); }
 
-    public String getUnit() {return unit;}
-    public void setUnit(String unit) {this.unit = unit;}
+    public StringProperty unitProperty() { return unit; }
+    public String getUnit() { return unit.get(); }
+    public void setUnit(String unit) { this.unit.set(unit); }
 }

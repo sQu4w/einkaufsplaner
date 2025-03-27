@@ -33,15 +33,19 @@ public class Recipe {
      * @return Die skalierte Zutatenliste
      */
     public List<Ingredient> getScaledIngredients(int servings) {
+
+        // Ermittelt den Faktor, um die Zutatenliste zu skalieren
         double factor = (double) servings / baseServings;
         List<Ingredient> scaledList = new ArrayList<>();
 
+        // Skaliert jede Zutat in der Liste
         for (Ingredient ing : ingredients){
             Ingredient scaled = new Ingredient(
                     ing.getName(),
                     ing.getAmount() * factor,
                     ing.getUnit()
             );
+            // Fügt die skalierte Zutat der Liste hinzu
             scaledList.add(scaled);
         }
         return scaledList;
