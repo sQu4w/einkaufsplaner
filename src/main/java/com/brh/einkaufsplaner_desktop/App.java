@@ -14,13 +14,17 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        DataInitializer.initializeFiles();  // Initialisierung der Dateien
 
+        // Service-Klasse zum Initialisieren der Daten
+        DataInitializer.initializeFiles();
+
+        // Lädt die FXML-Datei für die Startseite
         FXMLLoader loader = new FXMLLoader(getClass().getResource("homescreen.fxml"));
         Parent root = loader.load(); // lädt die FXML-Datei
 
+        // Setzt die Szene auf die geladene FXML-Datei und ihre Größe mit der sie erstellt wurde
+        stage.setScene(new Scene(root));
         stage.setTitle("Einkaufsplaner");
-        stage.setScene(new Scene(root)); // Setze die Szene auf die geladene FXML-Datei
         stage.show();
         stage.setY(50);
     }
