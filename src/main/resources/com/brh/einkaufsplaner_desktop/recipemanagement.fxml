@@ -25,17 +25,17 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <ListView fx:id="recipeListView" maxHeight="638.0" prefHeight="481.0" prefWidth="214.0" />
-                  <HBox alignment="CENTER" prefHeight="89.0" prefWidth="214.0">
+                  <ListView fx:id="recipeListView" maxHeight="638.0" prefHeight="491.0" prefWidth="214.0" />
+                  <HBox alignment="CENTER" prefHeight="74.0" prefWidth="214.0">
                      <children>
-                        <Button fx:id="deleteRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="83.0" text="🗑">
+                        <Button fx:id="deleteRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onDeleteRecipe" prefHeight="55.0" prefWidth="83.0" text="🗑">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
                            <font>
                               <Font size="26.0" />
                            </font></Button>
-                        <Button fx:id="newRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="132.0" text="+">
+                        <Button fx:id="addRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onAddRecipe" prefHeight="55.0" prefWidth="132.0" text="+">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
@@ -59,18 +59,18 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="350.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="100.0" text="Rezeptname" />
-                        <TextField fx:id="recipeNameTextField" prefHeight="26.0" prefWidth="237.0" />
+                        <TextField fx:id="recipeNameTF" prefHeight="26.0" prefWidth="237.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="363.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="100.0" text="Portionen" />
-                        <TextField fx:id="servingsTextField" prefHeight="26.0" prefWidth="118.0" />
-                        <Button fx:id="servingsInfo" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" text="Info" />
+                        <TextField fx:id="servingsTF" prefHeight="26.0" prefWidth="118.0" />
+                        <Button fx:id="servingsInfoBtn" mnemonicParsing="false" onAction="#onServingsInfo" prefHeight="26.0" prefWidth="118.0" text="Info" />
                      </children>
                   </HBox>
                   <Separator prefHeight="30.0" prefWidth="330.0" />
-                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="411.0">
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="363.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="431.0" text="Zutat hinzufügen">
                            <font>
@@ -86,26 +86,26 @@
                               <HBox alignment="CENTER" prefHeight="37.0" prefWidth="350.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="30.0" prefWidth="100.0" text="Zutat" />
-                                    <TextField translateX="-1.0" />
+                                    <TextField fx:id="ingredientNameTF" translateX="-1.0" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="350.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="30.0" prefWidth="100.0" text="Menge" />
-                                    <TextField />
+                                    <TextField fx:id="IngredientAmountTF" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="350.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="30.0" prefWidth="100.0" text="Einheit" />
-                                    <TextField />
+                                    <TextField fx:id="ingredientUnitTF" />
                                  </children>
                               </HBox>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="98.0" prefWidth="165.0">
                            <children>
-                              <Button fx:id="newIngredientBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="88.0" text="+">
+                              <Button fx:id="addIngredientBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onAddIngredient" prefHeight="31.0" prefWidth="88.0" text="+">
                                  <font>
                                     <Font size="26.0" />
                                  </font>
@@ -113,7 +113,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="deleteIngredientBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="88.0" text="🗑" textAlignment="CENTER">
+                              <Button fx:id="deleteIngredientBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onDeleteIngredient" prefHeight="31.0" prefWidth="88.0" text="🗑" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
@@ -142,7 +142,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="330.0">
                      <children>
-                        <Button fx:id="saveRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="334.0" text="Rezept Speichern" translateX="-5.0">
+                        <Button fx:id="saveRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onSaveRecipe" prefHeight="26.0" prefWidth="334.0" text="Rezept Speichern" translateX="-5.0">
                            <HBox.margin>
                               <Insets left="8.0" right="-2.0" />
                            </HBox.margin>
@@ -158,16 +158,19 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="ingredientsTableView" prefHeight="516.0" prefWidth="270.0">
+                  <TableView fx:id="ingredientsTextView" prefHeight="539.0" prefWidth="270.0">
                     <columns>
-                      <TableColumn fx:id="ingredientColumn" prefWidth="139.79998171329498" text="Zutat" />
-                      <TableColumn fx:id="ingredientQuantityColumn" prefWidth="54.5999755859375" text="Menge" />
-                        <TableColumn fx:id="ingredientUnitColumn" minWidth="0.0" prefWidth="75.20001831054685" text="Einheit" />
+                      <TableColumn fx:id="ingredientItemCol" prefWidth="139.79998171329498" text="Zutat" />
+                      <TableColumn fx:id="ingredientAmountCol" prefWidth="54.5999755859375" text="Menge" />
+                        <TableColumn fx:id="ingredientUnitCol" minWidth="0.0" prefWidth="75.20001831054685" text="Einheit" />
                     </columns>
                   </TableView>
-                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="270.0">
+                  <HBox alignment="CENTER" prefHeight="112.0" prefWidth="270.0">
                      <children>
-                        <Button fx:id="openShoppingListBtn" mnemonicParsing="false" onAction="#goToShoppingList" prefHeight="26.0" prefWidth="270.0" text="Zur Einkaufsliste" />
+                        <Button fx:id="openShoppingListBtn" alignment="CENTER" mnemonicParsing="false" onAction="#goToShoppingList" prefHeight="55.0" prefWidth="270.0" text="Zur Einkaufsliste">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Button>
                      </children></HBox>
                </children></VBox>
          </children>

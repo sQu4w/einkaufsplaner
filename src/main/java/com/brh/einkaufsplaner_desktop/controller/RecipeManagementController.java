@@ -1,5 +1,6 @@
 package com.brh.einkaufsplaner_desktop.controller;
 
+import com.brh.einkaufsplaner_desktop.helper.DialogHelper;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -35,5 +36,36 @@ public class RecipeManagementController {
         // Zeigt das neue Fenster mit dem geladenen Inhalt
         window.setScene(new Scene(view));
         window.show();
+    }
+
+    @FXML
+    private void onAddRecipe(){
+        //Todo: Hinzufügen eines Rezeptes
+    }
+
+    @FXML
+    private void onDeleteRecipe(){
+        //Todo: Löschen eines Rezeptes
+    }
+
+    @FXML
+    private void onServingsInfo(){
+        DialogHelper.infoDialog("Portionen",
+                "Hier können Sie die Anzahl der Portionen für das Rezept angeben.");
+    }
+
+    @FXML
+    private void onAddIngredient(){
+        //Todo: Zutat zur Zutatenliste (des Rezeptes) hinzufügen
+    }
+
+    @FXML
+    private void onDeleteIngredient(){
+        //Todo: Zutat aus der Zutatenliste (des Rezeptes) löschen
+    }
+
+    @FXML
+    private void onSaveRecipe(){
+        //Todo: Rezept speichern
     }
 }
