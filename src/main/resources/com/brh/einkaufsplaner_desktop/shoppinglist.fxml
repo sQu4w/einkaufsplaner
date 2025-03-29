@@ -111,7 +111,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="98.0" prefWidth="150.0">
                            <children>
-                              <Button fx:id="addRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onAddRecipe" prefHeight="62.0" prefWidth="59.0" text="+">
+                              <Button fx:id="addRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onAddRecipe" prefHeight="60.0" prefWidth="59.0" text="+">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -120,7 +120,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="347.0">
+                  <HBox alignment="CENTER" prefHeight="67.0" prefWidth="347.0">
                      <children>
                         <Button fx:id="openRecipeManagementBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToRecipeManagement" prefHeight="55.0" prefWidth="315.0" text="Zur Rezeptverwaltung">
                            <HBox.margin>

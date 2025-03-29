@@ -13,8 +13,7 @@ import java.util.List;
  */
 public class ShoppingListService {
 
-    // Dateiname als Konstante definiert, um Schreibfehler zu vermeiden
-    // und um den Dateinamen bei Bedarf einer zentralen Stelle ändern zu können
+    // Name der CSV-Datei in einer Konstante speichern
     private static final String FILE_NAME = "shopping_list.csv";
 
     /**

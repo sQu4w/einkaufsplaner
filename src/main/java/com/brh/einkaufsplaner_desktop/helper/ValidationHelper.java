@@ -2,6 +2,9 @@ package com.brh.einkaufsplaner_desktop.helper;
 
 import javafx.scene.control.TextField;
 
+import static com.brh.einkaufsplaner_desktop.helper.DialogHelper.errorDialog;
+import static com.brh.einkaufsplaner_desktop.helper.DialogHelper.warningDialog;
+
 /**
  * Hilfsklasse zur Validierung von Benutzereingaben.
  */
@@ -16,7 +19,7 @@ public class ValidationHelper {
      */
     public static boolean validateTextField(TextField tf, String fieldName) {
         if (tf.getText() == null || tf.getText().trim().isEmpty()) {
-            DialogHelper.warningDialog("Eingabefehler",
+            warningDialog("Eingabefehler",
                     fieldName + " darf nicht leer sein.");
             return false;
         }
@@ -28,21 +31,37 @@ public class ValidationHelper {
      *
      * @param tf Das Textfeld mit der Eingabe
      * @param fieldName Der Feldname für Fehlermeldungen
-     * @return Der geparste Double-Wert oder null bei Fehler
+     * @return Den Wert, wenn die Eingabe gültig ist, sonst null
      */
     public static Double validateNumber(TextField tf, String fieldName) {
+
+        // holt den Text aus dem Textfeld und entfernt führende und nachfolgende Leerzeichen
+        String text = tf.getText().trim();
+
+        if (text.isEmpty()) {
+            warningDialog("Eingabefehler", fieldName + " darf nicht leer sein.");
+            tf.requestFocus();
+            return null;
+        }
+
         try {
-            double value = Double.parseDouble(tf.getText());
+            // Ersetzt Kommas durch Punkte, um die Eingabe in eine Zahl umzuwandeln
+            text = text.replace(",", ".");
+            double value = Double.parseDouble(text);
+
             if (value <= 0) {
-                DialogHelper.warningDialog("Ungültige Eingabe",
-                        fieldName + " darf nicht 0 sein.");
+                warningDialog("Ungültige Eingabe", fieldName + " muss größer als 0 sein.");
+                tf.requestFocus();
                 return null;
             }
+
             return value;
+
         } catch (NumberFormatException e) {
-            DialogHelper.errorDialog("Ungültige Eingabe",
-                    fieldName + " muss eine gültige Zahl sein.");
+            errorDialog("Ungültige Eingabe", fieldName + " muss eine gültige Zahl sein.");
+            tf.requestFocus();
             return null;
         }
     }
+
 }

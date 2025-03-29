@@ -53,14 +53,12 @@ public class DialogHelper {
     /**
      * Zeigt einen einfachen Bestätigungsdialog mit den Buttons "OK" und "Abbrechen".
      * Beispiel:
-     * Wenn der Benutzer eine kritische Aktion durchführen möchte
-     * (z.B. Löschen eines Artikels),
-     * fragt diese Methode nach, ob er sich sicher ist.
+     * Löschen eines Artikels
      *
      * @param title   Der Titel des Dialogfensters.
      * @param message Was dem Nutzer mitgeteilt werden soll.
      * @return true, wenn der Benutzer "OK" auswählt,
-     * ansonsten false (z.B. bei "Abbrechen" oder Dialog schließen).
+     * ansonsten false (bei "Abbrechen" oder Dialog schließen).
      */
     public static boolean confirmDialog(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -81,7 +79,7 @@ public class DialogHelper {
      * @param itemName Der Name des zu löschenden Elements
      * @return gibt true zurück, wenn der Benutzer das Löschen bestätigt
      */
-    public static boolean confirmDeleteDialog(String itemName){
+    public static boolean deleteDialog(String itemName){
         return confirmDialog(
                 "Löschen bestätigen",
                 "Sind Sie sicher, dass Sie " + itemName + " löschen möchten?");
@@ -130,4 +128,19 @@ public class DialogHelper {
         }
         return "Abbrechen";
     }
+
+    /**
+     * Zeigt einen Bestätigungsdialog für das Löschen eines Elements
+     * (z.B. Artikel oder Rezept)
+     *
+     * @param itemName Das Element, das gelöscht werden soll
+     * @return true, wenn der Benutzer das Löschen bestätigt, sonst false
+     */
+    public static boolean confirmDeleteDialog(String itemName) {
+        return confirmDialog(
+                "Löschen bestätigen",
+                "Möchten Sie \"" + itemName + "\" wirklich löschen?"
+        );
+    }
+
 }

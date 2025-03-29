@@ -51,7 +51,7 @@ public class RecipeManagementController {
     @FXML
     private void onServingsInfo(){
         DialogHelper.infoDialog("Portionen",
-                "Hier können Sie die Anzahl der Portionen für das Rezept angeben.");
+                "Hier können Sie Basisportionen für das Rezept festlegen.");
     }
 
     @FXML

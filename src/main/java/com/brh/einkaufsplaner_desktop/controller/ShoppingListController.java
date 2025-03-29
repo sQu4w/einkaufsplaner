@@ -1,40 +1,41 @@
 package com.brh.einkaufsplaner_desktop.controller;
 
 import com.brh.einkaufsplaner_desktop.model.Article;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static com.brh.einkaufsplaner_desktop.helper.DialogHelper.*;
+import static com.brh.einkaufsplaner_desktop.helper.ValidationHelper.validateNumber;
+import static com.brh.einkaufsplaner_desktop.helper.ValidationHelper.validateTextField;
+
 public class ShoppingListController {
 
-    @FXML
-    private Button openRecipeManagementBtn;
+    @FXML private TextField articleNameTF;
+    @FXML private TextField articleAmountTF;
+    @FXML private TextField articleUnitTF;
 
-    @FXML
-    private TextField articleNameTF;
+    @FXML private TableView<Article> shoppingListTV;
+    @FXML private TableColumn<Article, String> articleItemCol;
+    @FXML private TableColumn<Article, Double> articleAmountCol;
+    @FXML private TableColumn<Article, String> articleUnitCol;
+    @FXML private TableColumn<Article, Boolean> articleBoughtCol;
 
-    @FXML
-    private TextField articleAmountTF;
+    @FXML private Button openRecipeManagementBtn;
 
-    @FXML
-    private TextField articleUnitTF;
-
-    @FXML
-    private TableView<Article> shoppingListTV;
-
-
-    // Todo: Initalisierungs-Methode, die beim Start des Controllers aufgerufen wird
-    //    @FXML
-    //    private void initialize(){
-    //
-    //    }
+    private final ObservableList<Article> shoppingList = FXCollections.observableArrayList();
 
     /**
      * Öffnet die Ansicht für die Rezeptverwaltung
@@ -49,28 +50,85 @@ public class ShoppingListController {
         window.show();
     }
 
+    /**
+     * Initialisiert die Einkaufsliste und verbindet die Spalten mit den Daten.
+     */
     @FXML
-    private void onAddArticle(){
-        //Todo: Hinzufügen eines Artikels zur Einkaufsliste
-        String name = articleNameTF.getText();
-        String amount = articleAmountTF.getText();
-        String unit = articleUnitTF.getText();
+    private void initialize() {
+        // TableView mit Liste verbinden
+        shoppingListTV.setItems(shoppingList);
 
-        // Überprüfen, ob alle Felder ausgefüllt sind
-        if (name.isEmpty() || amount.isEmpty() || unit.isEmpty()){
+        // Spalten verbinden
+        articleItemCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        articleAmountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        articleUnitCol.setCellValueFactory(new PropertyValueFactory<>("unit"));
 
+        // Checkbox-Spalte
+        articleBoughtCol.setCellValueFactory(new PropertyValueFactory<>("bought"));
+        articleBoughtCol.setCellFactory(CheckBoxTableCell.forTableColumn(articleBoughtCol));
+    }
+
+    /**
+     * Fügt einen Artikel zur Einkaufsliste hinzu.
+     */
+    @FXML
+    private void onAddArticle() {
+
+        // Eingabefelder validieren (String)
+        if (!validateTextField(articleNameTF, "Artikelname")) return;
+        if (!validateTextField(articleUnitTF, "Einheit")) return;
+
+        // Eingabefeld validieren (Double)
+        Double amount = validateNumber(articleAmountTF, "Menge");
+        if (amount == null) return;
+
+        // Artikel erstellen und zur Liste hinzufügen
+        String name = articleNameTF.getText().trim();
+        String unit = articleUnitTF.getText().trim();
+        Article article = new Article(false, name, amount, unit);
+        shoppingList.add(article);
+
+        // Eingabefelder leeren
+        articleNameTF.clear();
+        articleAmountTF.clear();
+        articleUnitTF.clear();
+
+        // Fokus zurück auf das Eingabefeld um den nächsten Artikel hinzuzufügen
+        articleNameTF.requestFocus();
+    }
+
+
+    @FXML
+    private void onDeleteArticle() {
+        Article selectedArticle = shoppingListTV.getSelectionModel().getSelectedItem();
+
+        if (selectedArticle == null) {
+            warningDialog("Kein Artikel ausgewählt",
+                    "Bitte wählen Sie einen Artikel aus der Liste, den Sie löschen möchten.");
+            return;
+        }
+
+        boolean confirmed = confirmDeleteDialog(selectedArticle.getName());
+
+        if (confirmed) {
+            shoppingListTV.getItems().remove(selectedArticle);
         }
     }
 
-    @FXML
-    private void onDeleteArticle(){
-        //Todo: Löschen eines Artikels aus der Einkaufsliste
-    }
 
     @FXML
-    private void onDeleteShoppingList(){
-        //Todo: Löschen der gesamten Einkaufsliste
+    private void onDeleteShoppingList() {
+        boolean confirmed = confirmDialog(
+                "Einkaufsliste löschen",
+                "Möchten Sie wirklich die gesamte Einkaufsliste löschen?");
+
+        if (confirmed) {
+            shoppingList.clear();
+            shoppingListTV.getItems().clear(); // View aktualisieren
+            infoDialog("Liste gelöscht", "Die Einkaufsliste wurde erfolgreich gelöscht.");
+        }
     }
+
 
     @FXML
     private void onAddRecipe(){
