@@ -44,7 +44,6 @@ public class HomeScreenController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/brh/einkaufsplaner_desktop/recipemanagement.fxml"));
         Parent view = loader.load();
 
-        // down
         Stage window = (Stage) openRecipeManagementBtn.getScene().getWindow();
         window.setScene(new Scene(view));
         window.show();
