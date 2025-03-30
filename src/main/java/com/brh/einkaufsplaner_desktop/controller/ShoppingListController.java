@@ -35,6 +35,7 @@ public class ShoppingListController {
 
     @FXML private Button openRecipeManagementBtn;
 
+    // Zum Aktualisieren der Einkaufsliste bei Änderungen (quasi unser Listener f
     private final ObservableList<Article> shoppingList = FXCollections.observableArrayList();
 
     /**
@@ -58,12 +59,12 @@ public class ShoppingListController {
         // TableView mit Liste verbinden
         shoppingListTV.setItems(shoppingList);
 
-        // Spalten verbinden
+        // Spalten mit den Daten verbinden
         articleItemCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         articleAmountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
         articleUnitCol.setCellValueFactory(new PropertyValueFactory<>("unit"));
 
-        // Checkbox-Spalte
+        // Checkbox-Spalte für "Gekauft" erstellen
         articleBoughtCol.setCellValueFactory(new PropertyValueFactory<>("bought"));
         articleBoughtCol.setCellFactory(CheckBoxTableCell.forTableColumn(articleBoughtCol));
     }
@@ -129,6 +130,41 @@ public class ShoppingListController {
         }
     }
 
+    /**
+     * Verschiebt den ausgewählten Artikel in der Einkaufsliste nach oben.
+     */
+    @FXML
+    private void onMoveUp() {
+
+        // gibt den Index des aktuell ausgewählten Artikels zurück
+        int selectedIndex = shoppingListTV.getSelectionModel().getSelectedIndex();
+
+        // Wenn der Index größer als 0 ist, dann kann der Artikel nach oben verschoben werden
+        if (selectedIndex > 0) {
+            Article selectedArticle = shoppingList.get(selectedIndex);
+            shoppingList.remove(selectedIndex);
+            shoppingList.add(selectedIndex - 1, selectedArticle);
+            shoppingListTV.getSelectionModel().select(selectedIndex - 1);
+        }
+    }
+
+
+    @FXML
+    private void onMoveDown() {
+
+        // gibt den Index des aktuell ausgewählten Artikels zurück
+        int selectedIndex = shoppingListTV.getSelectionModel().getSelectedIndex();
+
+        // Ist der Index kleiner als die Größe der Liste - 1,
+        // dann kann der Artikel nach unten verschoben werden
+        if (selectedIndex >= 0 && selectedIndex < shoppingList.size() - 1) {
+            Article selectedArticle = shoppingList.get(selectedIndex);
+            shoppingList.remove(selectedIndex);
+            shoppingList.add(selectedIndex + 1, selectedArticle);
+            shoppingListTV.getSelectionModel().select(selectedIndex + 1);
+        }
+    }
+
 
     @FXML
     private void onAddRecipe(){
@@ -137,17 +173,8 @@ public class ShoppingListController {
 
     @FXML
     private void onSelectRecipe(){
-        //Todo: Auswählen eines Rezepts zur aus der Rezeptsammlung
-        // von der Rezeptverwaltung
+        //Todo: Auswählen eines Rezepts aus der Rezeptsammlung
     }
 
-    @FXML
-    private void onMoveUp(){
-        //Todo: Verschieben eines Artikels in der Einkaufsliste nach oben
-    }
 
-    @FXML
-    private void onMoveDown(){
-        //Todo: Verschieben eines Artikels in der Einkaufsliste nach unten
-    }
 }
