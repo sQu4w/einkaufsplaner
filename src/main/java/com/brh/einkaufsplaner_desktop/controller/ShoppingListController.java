@@ -1,6 +1,7 @@
 package com.brh.einkaufsplaner_desktop.controller;
-
+import com.brh.einkaufsplaner_desktop.helper.ValidationHelper;
 import com.brh.einkaufsplaner_desktop.model.Article;
+import com.brh.einkaufsplaner_desktop.service.ShoppingListService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,12 +15,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
+import java.io.File;
 import java.io.IOException;
-
 import static com.brh.einkaufsplaner_desktop.helper.DialogHelper.*;
-import static com.brh.einkaufsplaner_desktop.helper.ValidationHelper.validateNumber;
-import static com.brh.einkaufsplaner_desktop.helper.ValidationHelper.validateTextField;
+import static com.brh.einkaufsplaner_desktop.helper.ValidationHelper.*;
+import static com.brh.einkaufsplaner_desktop.service.ShoppingListService.saveArticles;
 
 public class ShoppingListController {
 
@@ -43,9 +43,10 @@ public class ShoppingListController {
      */
     @FXML
     private void goToRecipeManagement() throws IOException {
+
+        // Lade die FXML-Datei für die Rezeptverwaltung
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/brh/einkaufsplaner_desktop/recipemanagement.fxml"));
         Parent view = loader.load();
-
         Stage window = (Stage) openRecipeManagementBtn.getScene().getWindow();
         window.setScene(new Scene(view));
         window.show();
@@ -56,6 +57,10 @@ public class ShoppingListController {
      */
     @FXML
     private void initialize() {
+
+        // Liste aus Datei laden
+        shoppingList.setAll(ShoppingListService.loadArticles());
+
         // TableView mit Liste verbinden
         shoppingListTV.setItems(shoppingList);
 
@@ -75,17 +80,17 @@ public class ShoppingListController {
     @FXML
     private void onAddArticle() {
 
-        // Eingabefelder validieren (String)
-        if (!validateTextField(articleNameTF, "Artikelname")) return;
-        if (!validateTextField(articleUnitTF, "Einheit")) return;
+        // Eingabefelder validieren
+        if (!ValidationHelper.validateName(articleNameTF)) return;
+        if (!ValidationHelper.validateAmount(articleAmountTF)) return;
+        if (!ValidationHelper.validateUnit(articleUnitTF)) return;
 
-        // Eingabefeld validieren (Double)
-        Double amount = validateNumber(articleAmountTF, "Menge");
-        if (amount == null) return;
+        // Werte extrahieren
+        String name = articleNameTF.getText().trim();
+        double amount = Double.parseDouble(articleAmountTF.getText().trim().replace(",", "."));
+        String unit = articleUnitTF.getText().trim();
 
         // Artikel erstellen und zur Liste hinzufügen
-        String name = articleNameTF.getText().trim();
-        String unit = articleUnitTF.getText().trim();
         Article article = new Article(false, name, amount, unit);
         shoppingList.add(article);
 
@@ -93,10 +98,12 @@ public class ShoppingListController {
         articleNameTF.clear();
         articleAmountTF.clear();
         articleUnitTF.clear();
-
-        // Fokus zurück auf das Eingabefeld um den nächsten Artikel hinzuzufügen
         articleNameTF.requestFocus();
+
+        // Speicherung der Einkaufsliste
+        saveShoppingList();
     }
+
 
 
     @FXML
@@ -105,7 +112,7 @@ public class ShoppingListController {
 
         if (selectedArticle == null) {
             warningDialog("Kein Artikel ausgewählt",
-                    "Bitte wählen Sie einen Artikel aus der Liste, den Sie löschen möchten.");
+                    "Bitte wähle einen Artikel aus der Liste aus, um ihn zu löschen.");
             return;
         }
 
@@ -113,6 +120,7 @@ public class ShoppingListController {
 
         if (confirmed) {
             shoppingListTV.getItems().remove(selectedArticle);
+            saveShoppingList();
         }
     }
 
@@ -121,11 +129,12 @@ public class ShoppingListController {
     private void onDeleteShoppingList() {
         boolean confirmed = confirmDialog(
                 "Einkaufsliste löschen",
-                "Möchten Sie wirklich die gesamte Einkaufsliste löschen?");
+                "Möchtest du wirklich die gesamte Einkaufsliste löschen?");
 
         if (confirmed) {
             shoppingList.clear();
-            shoppingListTV.getItems().clear(); // View aktualisieren
+            shoppingListTV.getItems().clear();// View aktualisieren
+            saveShoppingList();
             infoDialog("Liste gelöscht", "Die Einkaufsliste wurde erfolgreich gelöscht.");
         }
     }
@@ -145,10 +154,13 @@ public class ShoppingListController {
             shoppingList.remove(selectedIndex);
             shoppingList.add(selectedIndex - 1, selectedArticle);
             shoppingListTV.getSelectionModel().select(selectedIndex - 1);
+            saveShoppingList();
         }
     }
 
-
+    /**
+     * Verschiebt den ausgewählten Artikel in der Einkaufsliste nach unten.
+     */
     @FXML
     private void onMoveDown() {
 
@@ -162,6 +174,7 @@ public class ShoppingListController {
             shoppingList.remove(selectedIndex);
             shoppingList.add(selectedIndex + 1, selectedArticle);
             shoppingListTV.getSelectionModel().select(selectedIndex + 1);
+            saveShoppingList();
         }
     }
 
@@ -174,6 +187,11 @@ public class ShoppingListController {
     @FXML
     private void onSelectRecipe(){
         //Todo: Auswählen eines Rezepts aus der Rezeptsammlung
+    }
+
+    private void saveShoppingList(){
+        File file = new File("data/shopping_list.csv");
+        saveArticles(shoppingList, file);
     }
 
 

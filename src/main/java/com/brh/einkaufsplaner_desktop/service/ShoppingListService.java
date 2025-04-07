@@ -1,10 +1,9 @@
 package com.brh.einkaufsplaner_desktop.service;
 
+import com.brh.einkaufsplaner_desktop.helper.DialogHelper;
 import com.brh.einkaufsplaner_desktop.model.Article;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
 public class ShoppingListService {
 
     // Name der CSV-Datei in einer Konstante speichern
-    private static final String FILE_NAME = "shopping_list.csv";
+    private static final String FILE_NAME = "data/shopping_list.csv";
 
     /**
      * Lädt alle Artikel aus der CSV-Datei und gibt sie als Liste zurück.
@@ -32,7 +31,7 @@ public class ShoppingListService {
             while ((line = reader.readLine()) != null) {
 
                 // Zeile am Komma aufteilen
-                String[] parts = line.split(",");
+                String[] parts = line.split(";");
 
                 // Nut gültige Zeilen mit genau 4 Inhalten verarbeiten
                 if (parts.length == 4) {
@@ -54,4 +53,28 @@ public class ShoppingListService {
 
         return articles;
     }
+
+    /**
+     * Speichert die Artikel in die CSV-Datei.
+     * @param articles Liste mit Artikeln
+     * @param file Datei, in die gespeichert werden soll
+     */
+    public static void saveArticles(List<Article> articles, File file) {
+
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            for (Article article : articles) {
+                String line = article.isBought() + ";" +
+                        article.getName() + ";" +
+                        article.getAmount() + ";" +
+                        article.getUnit();
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            DialogHelper.errorDialog("Fehler beim Speichern", "Die Einkaufsliste konnte nicht gespeichert werden.");
+            e.printStackTrace();
+        }
+    }
+
 }

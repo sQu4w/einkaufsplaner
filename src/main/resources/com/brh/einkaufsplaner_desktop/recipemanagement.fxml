@@ -28,20 +28,25 @@
                   <ListView fx:id="recipeListView" maxHeight="638.0" prefHeight="491.0" prefWidth="214.0" />
                   <HBox alignment="CENTER" prefHeight="74.0" prefWidth="214.0">
                      <children>
-                        <Button fx:id="deleteRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onDeleteRecipe" prefHeight="55.0" prefWidth="83.0" text="🗑">
-                           <HBox.margin>
-                              <Insets left="5.0" right="5.0" />
-                           </HBox.margin>
+                        <Button fx:id="deleteRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onDeleteRecipe" prefHeight="56.0" prefWidth="80.0" text="🗑">
                            <font>
                               <Font size="26.0" />
-                           </font></Button>
-                        <Button fx:id="addRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onAddRecipe" prefHeight="55.0" prefWidth="132.0" text="+">
+                           </font>
                            <HBox.margin>
-                              <Insets left="5.0" right="5.0" />
-                           </HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin></Button>
+                        <Button fx:id="editRecipeBtn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onEditRecipe" prefHeight="56.0" prefWidth="80.0" text="✎">
+                           <font>
+                              <Font name="System Bold" size="26.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="addRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onAddRecipe" prefHeight="56.0" prefWidth="80.0" text="+">
                            <font>
                               <Font size="26.0" />
-                           </font></Button>
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin></Button>
                      </children>
                      <VBox.margin>
                         <Insets />

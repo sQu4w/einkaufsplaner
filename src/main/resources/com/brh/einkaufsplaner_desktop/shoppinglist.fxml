@@ -32,7 +32,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0">
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="100.0" text="Artikelname" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="100.0" text="Artikel" />
                                     <TextField fx:id="articleNameTF" alignment="CENTER" prefWidth="150.0" />
                                  </children>
                               </HBox>

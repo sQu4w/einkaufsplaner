@@ -44,6 +44,11 @@ public class RecipeManagementController {
     }
 
     @FXML
+    private void onEditRecipe(){
+        //Todo: Bearbeiten eines Rezeptes
+    }
+
+    @FXML
     private void onDeleteRecipe(){
         //Todo: Löschen eines Rezeptes
     }
@@ -51,17 +56,17 @@ public class RecipeManagementController {
     @FXML
     private void onServingsInfo(){
         DialogHelper.infoDialog("Portionen",
-                "Hier können Sie Basisportionen für das Rezept festlegen.");
+                "Hier können die Basisportionen für das Rezept festlegen werden.");
     }
 
     @FXML
     private void onAddIngredient(){
-        //Todo: Zutat zur Zutatenliste (des Rezeptes) hinzufügen
+        //Todo: Zutat zur Zutatenliste hinzufügen
     }
 
     @FXML
     private void onDeleteIngredient(){
-        //Todo: Zutat aus der Zutatenliste (des Rezeptes) löschen
+        //Todo: Zutat aus der Zutatenliste löschen
     }
 
     @FXML

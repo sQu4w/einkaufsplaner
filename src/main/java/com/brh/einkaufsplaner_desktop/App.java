@@ -19,7 +19,7 @@ public class App extends Application {
         DataInitializer.initializeFiles();
 
         // Lädt die FXML-Datei für die Startseite
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("homescreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/brh/einkaufsplaner_desktop/homescreen.fxml"));
         Parent root = loader.load(); // lädt die FXML-Datei
 
         // Setzt die Szene auf die geladene FXML-Datei und ihre Größe mit der sie erstellt wurde

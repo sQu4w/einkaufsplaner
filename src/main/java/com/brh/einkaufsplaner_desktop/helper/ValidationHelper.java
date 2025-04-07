@@ -11,57 +11,122 @@ import static com.brh.einkaufsplaner_desktop.helper.DialogHelper.warningDialog;
 public class ValidationHelper {
 
     /**
-     * Prüft, ob ein Textfeld leer oder nur aus Leerzeichen besteht.
-     *
-     * @param tf Textfeld, das geprüft werden soll
-     * @param fieldName Der angezeigte Feldname für den Dialog
-     * @return false, wenn das Feld leer ist, sonst true
+     * Validiert den Artikelnamen: darf nicht leer sein, nur Buchstaben enthalten.
      */
-    public static boolean validateTextField(TextField tf, String fieldName) {
-        if (tf.getText() == null || tf.getText().trim().isEmpty()) {
-            warningDialog("Eingabefehler",
-                    fieldName + " darf nicht leer sein.");
+    public static boolean validateName(TextField tf) {
+        String text = tf.getText().trim();
+
+        if (isNullOrBlank(text)) {
+            warningDialog("Eingabefehler", "Artikelname darf nicht leer sein.");
+            tf.requestFocus();
             return false;
         }
+
+        if (!isLettersOnly(text)) {
+            warningDialog("Ungültige Eingabe", "Artikelname darf nur Buchstaben enthalten.");
+            tf.requestFocus();
+            return false;
+        }
+
         return true;
     }
 
     /**
-     * Validiert die Eingabe von Zahlen.
-     *
-     * @param tf Das Textfeld mit der Eingabe
-     * @param fieldName Der Feldname für Fehlermeldungen
-     * @return Den Wert, wenn die Eingabe gültig ist, sonst null
+     * Validiert die Menge: darf nicht leer sein, muss eine Zahl > 0 sein.
      */
-    public static Double validateNumber(TextField tf, String fieldName) {
-
-        // holt den Text aus dem Textfeld und entfernt führende und nachfolgende Leerzeichen
+    public static boolean validateAmount(TextField tf) {
         String text = tf.getText().trim();
 
-        if (text.isEmpty()) {
-            warningDialog("Eingabefehler", fieldName + " darf nicht leer sein.");
+        if (isNullOrBlank(text)) {
+            warningDialog("Eingabefehler", "Menge darf nicht leer sein.");
             tf.requestFocus();
-            return null;
+            return false;
         }
 
         try {
-            // Ersetzt Kommas durch Punkte, um die Eingabe in eine Zahl umzuwandeln
             text = text.replace(",", ".");
             double value = Double.parseDouble(text);
 
             if (value <= 0) {
-                warningDialog("Ungültige Eingabe", fieldName + " muss größer als 0 sein.");
+                warningDialog("Ungültige Eingabe", "Menge muss größer als 0 sein.");
                 tf.requestFocus();
-                return null;
+                return false;
             }
 
-            return value;
-
         } catch (NumberFormatException e) {
-            errorDialog("Ungültige Eingabe", fieldName + " muss eine gültige Zahl sein.");
+            errorDialog("Ungültige Eingabe", "Menge muss eine gültige Zahl sein.");
             tf.requestFocus();
-            return null;
+            return false;
         }
+
+        return true;
     }
 
+    /**
+     * Validiert die Einheit: optionales Feld, aber falls ausgefüllt, nur Buchstaben erlaubt.
+     */
+    public static boolean validateUnit(TextField tf) {
+        String text = tf.getText().trim();
+
+        if (text.isEmpty()) return true; // leer = erlaubt
+
+        if (!isLettersOnly(text)) {
+            warningDialog("Ungültige Eingabe", "Einheit darf nur Buchstaben enthalten.");
+            tf.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Validiert eine positive ganze Zahl, z.B. für Portionen.
+     */
+    public static boolean validateServings(TextField tf) {
+        String text = tf.getText().trim();
+
+        if (isNullOrBlank(text)) {
+            warningDialog("Eingabefehler", "Portionen dürfen nicht leer sein.");
+            tf.requestFocus();
+            return false;
+        }
+
+        try {
+            int value = Integer.parseInt(text);
+            if (value <= 0) {
+                warningDialog("Ungültige Eingabe", "Portionen müssen größer als 0 sein.");
+                tf.requestFocus();
+                return false;
+            }
+
+        } catch (NumberFormatException e) {
+            errorDialog("Ungültige Eingabe", "Portionen müssen eine ganze Zahl sein.");
+            tf.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+
+    // Hilfsmethoden
+
+    /**
+     * Überprüft, ob der Text null oder leer ist.
+     *
+     * @param text der zu überprüfende Text
+     * @return true, wenn der Text null oder leer ist, andernfalls false
+     */
+    private static boolean isNullOrBlank(String text) {
+        return text == null || text.trim().isEmpty();
+    }
+
+    /**
+     * Überprüft, ob der Text nur Buchstaben (inkl. Umlaute) enthält.
+     *
+     * @param text der zu überprüfende Text
+     * @return true, wenn der Text nur Buchstaben enthält, andernfalls false
+     */
+    private static boolean isLettersOnly(String text) {
+        return text.matches("[a-zA-ZäöüÄÖÜß\\s]+");
+    }
 }
