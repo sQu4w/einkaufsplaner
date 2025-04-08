@@ -52,8 +52,6 @@ public class DialogHelper {
 
     /**
      * Zeigt einen einfachen Bestätigungsdialog mit den Buttons "OK" und "Abbrechen".
-     * Beispiel:
-     * Löschen eines Artikels
      *
      * @param title   Der Titel des Dialogfensters.
      * @param message Was dem Nutzer mitgeteilt werden soll.
@@ -75,7 +73,7 @@ public class DialogHelper {
 
     /**
      * Zeigt einen Bestätigungsdialog für das Löschen eines Elements
-     * (z.B. Rezept oder Artikel)
+     *
      * @param itemName Der Name des zu löschenden Elements
      * @return gibt true zurück, wenn der Benutzer das Löschen bestätigt
      */

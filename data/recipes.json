@@ -1,32 +1,130 @@
-[{
-  "name": "Gemüsesuppe",
-  "ingredients": [
-    {
-      "amount": 2,
-      "unit": "Stück",
-      "name": "Karotten"
-    },
-    {
-      "amount": 2,
-      "unit": "Stück",
-      "name": "Sellerie"
-    },
-    {
-      "amount": 300,
-      "unit": "g",
-      "name": "Maultaschen"
-    },
-    {
-      "amount": 20,
-      "unit": "g",
-      "name": "Gemüsebrühe"
-    },
-    {
-      "amount": 3,
-      "unit": "Stück",
-      "name": "Zwiebeln"
-    }
-  ],
-  "baseServings": 2,
-  "preparation": "Alles klein schnibbln und im Topf köcheln lassen"
-}]
+[
+  {
+    "name": "Gemüsesuppe",
+    "ingredients": [
+      {
+        "amount": 2,
+        "unit": "Stück",
+        "name": "Karotten"
+      },
+      {
+        "amount": 2,
+        "unit": "Stück",
+        "name": "Sellerie"
+      },
+      {
+        "amount": 300,
+        "unit": "g",
+        "name": "Maultaschen"
+      },
+      {
+        "amount": 20,
+        "unit": "g",
+        "name": "Gemüsebrühe"
+      },
+      {
+        "amount": 3,
+        "unit": "Stück",
+        "name": "Zwiebeln"
+      },
+      {
+        "amount": 1,
+        "unit": "Bund",
+        "name": "Petersilie"
+      }
+    ],
+    "baseServings": 2,
+    "preparation": "Alles klein schnibbln und im Topf köcheln lassen"
+  },
+  {
+    "name": "Rührei",
+    "ingredients": [
+      {
+        "amount": 8,
+        "unit": "Stück",
+        "name": "Eier"
+      },
+      {
+        "amount": 5,
+        "unit": "g",
+        "name": "Salz"
+      },
+      {
+        "amount": 3,
+        "unit": "g",
+        "name": "Pfeffer"
+      },
+      {
+        "amount": 5,
+        "unit": "g",
+        "name": "Pflanzenöl"
+      }
+    ],
+    "baseServings": 2,
+    "preparation": "Eier mit Öl in der Pfanne braten und anschließend mit\nSalz und Pfeffer würzen."
+  },
+  {
+    "name": "Ramen",
+    "ingredients": [
+      {
+        "amount": 300,
+        "unit": "g",
+        "name": "Mie Nudeln"
+      },
+      {
+        "amount": 200,
+        "unit": "g",
+        "name": "Edamame"
+      },
+      {
+        "amount": 300,
+        "unit": "g",
+        "name": "Tofu"
+      },
+      {
+        "amount": 800,
+        "unit": "ml",
+        "name": "Wasser"
+      },
+      {
+        "amount": 200,
+        "unit": "g",
+        "name": "Pak Choi"
+      },
+      {
+        "amount": 400,
+        "unit": "g",
+        "name": "Kokosmilch"
+      },
+      {
+        "amount": 5,
+        "unit": "g",
+        "name": "Gelbe Currypaste"
+      }
+    ],
+    "baseServings": 2,
+    "preparation": "Alles in den Topf"
+  },
+  {
+    "name": "Avocado Toast",
+    "ingredients": [
+      {
+        "amount": 2,
+        "unit": "Stück",
+        "name": "Avocado"
+      },
+      {
+        "amount": 4,
+        "unit": "Stück",
+        "name": "Eier"
+      },
+      {
+        "amount": 4,
+        "unit": "Scheiben",
+        "name": "Brot"
+      }
+    ],
+    "baseServings": 2,
+    "preparation": "Eier in Pfanne braten\nBrot in Pfanne kurz anrösten\nAvocado in scheiben schneiden\nZutaten auf dem Brot anrichten, \nbeliebig würzen und genießen"
+  }
+]

@@ -108,8 +108,6 @@ public class ValidationHelper {
         return true;
     }
 
-    // Hilfsmethoden
-
     /**
      * Überprüft, ob der Text null oder leer ist.
      *
