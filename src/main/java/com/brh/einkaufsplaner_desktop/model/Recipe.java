@@ -10,11 +10,13 @@ public class Recipe {
     private String name;
     private int baseServings;
     private List<Ingredient> ingredients;
+    private String preparation;
 
-    public Recipe(String name, int baseServings, List<Ingredient> ingredients) {
+    public Recipe(String name, int baseServings, List<Ingredient> ingredients, String preparation) {
         this.name = name;
         this.baseServings = baseServings;
         this.ingredients = ingredients;
+        this.preparation = preparation;
     }
 
     // Getter & Setter für Name, Grundportion und Zutaten
@@ -27,6 +29,8 @@ public class Recipe {
     public List<Ingredient> getIngredients() {return ingredients;}
     public void setIngredients(List<Ingredient> ingredients) {this.ingredients = ingredients;}
 
+    public String getPreparation() {return preparation;}
+    public void setPreparation(String preparation) {this.preparation = preparation;}
     /**
      * Skaliert die Zutatenliste auf die gewünschte Portionen für die Einkaufsliste
      * @param servings Die gewünschte Portionen

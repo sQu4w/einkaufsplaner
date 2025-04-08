@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import static com.brh.einkaufsplaner_desktop.helper.DialogHelper.*;
-import static com.brh.einkaufsplaner_desktop.helper.ValidationHelper.*;
 import static com.brh.einkaufsplaner_desktop.service.ShoppingListService.saveArticles;
 
 public class ShoppingListController {
@@ -189,6 +188,9 @@ public class ShoppingListController {
         //Todo: Auswählen eines Rezepts aus der Rezeptsammlung
     }
 
+    /**
+     * Speichert die Einkaufsliste in einer CSV-Datei.
+     */
     private void saveShoppingList(){
         File file = new File("data/shopping_list.csv");
         saveArticles(shoppingList, file);

@@ -21,7 +21,7 @@ public class ShoppingListService {
      */
     public static List<Article> loadArticles() {
 
-        // Liste zum Speichern der geladenen Artikel erstellen
+        // Liste für Artikel erstellen
         List<Article> articles = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
@@ -61,14 +61,16 @@ public class ShoppingListService {
      */
     public static void saveArticles(List<Article> articles, File file) {
 
-
+        // Überprüfen, ob die Datei existiert, und sie gegebenenfalls erstellen
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             for (Article article : articles) {
                 String line = article.isBought() + ";" +
                         article.getName() + ";" +
                         article.getAmount() + ";" +
                         article.getUnit();
+                // Zeile in die CSV-Datei schreiben
                 writer.write(line);
+                // Zeilenumbruch hinzufügen
                 writer.newLine();
             }
         } catch (IOException e) {

@@ -1,0 +1,32 @@
+[{
+  "name": "Gemüsesuppe",
+  "ingredients": [
+    {
+      "amount": 2,
+      "unit": "Stück",
+      "name": "Karotten"
+    },
+    {
+      "amount": 2,
+      "unit": "Stück",
+      "name": "Sellerie"
+    },
+    {
+      "amount": 300,
+      "unit": "g",
+      "name": "Maultaschen"
+    },
+    {
+      "amount": 20,
+      "unit": "g",
+      "name": "Gemüsebrühe"
+    },
+    {
+      "amount": 3,
+      "unit": "Stück",
+      "name": "Zwiebeln"
+    }
+  ],
+  "baseServings": 2,
+  "preparation": "Alles klein schnibbln und im Topf köcheln lassen"
+}]
