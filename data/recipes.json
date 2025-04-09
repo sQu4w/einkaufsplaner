@@ -64,48 +64,6 @@
     "preparation": "Eier mit Öl in der Pfanne braten und anschließend mit\nSalz und Pfeffer würzen."
   },
   {
-    "name": "Ramen",
-    "ingredients": [
-      {
-        "amount": 300,
-        "unit": "g",
-        "name": "Mie Nudeln"
-      },
-      {
-        "amount": 200,
-        "unit": "g",
-        "name": "Edamame"
-      },
-      {
-        "amount": 300,
-        "unit": "g",
-        "name": "Tofu"
-      },
-      {
-        "amount": 800,
-        "unit": "ml",
-        "name": "Wasser"
-      },
-      {
-        "amount": 200,
-        "unit": "g",
-        "name": "Pak Choi"
-      },
-      {
-        "amount": 400,
-        "unit": "g",
-        "name": "Kokosmilch"
-      },
-      {
-        "amount": 5,
-        "unit": "g",
-        "name": "Gelbe Currypaste"
-      }
-    ],
-    "baseServings": 2,
-    "preparation": "Alles in den Topf"
-  },
-  {
     "name": "Avocado Toast",
     "ingredients": [
       {
@@ -124,7 +82,34 @@
         "name": "Brot"
       }
     ],
-    "baseServings": 2,
+    "baseServings": 3,
     "preparation": "Eier in Pfanne braten\nBrot in Pfanne kurz anrösten\nAvocado in scheiben schneiden\nZutaten auf dem Brot anrichten, \nbeliebig würzen und genießen"
+  },
+  {
+    "name": "Zwiebelsuppe",
+    "ingredients": [
+      {
+        "amount": 10,
+        "unit": "Stück",
+        "name": "Zwiebeln"
+      },
+      {
+        "amount": 5,
+        "unit": "Scheiben",
+        "name": "Käse"
+      },
+      {
+        "amount": 10,
+        "unit": "g",
+        "name": "Gemüsebrühe"
+      },
+      {
+        "amount": 2,
+        "unit": "g",
+        "name": "Pfeffer"
+      }
+    ],
+    "baseServings": 2,
+    "preparation": ""
   }
 ]

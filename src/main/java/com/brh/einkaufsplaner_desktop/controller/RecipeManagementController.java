@@ -112,7 +112,6 @@ public class RecipeManagementController {
         setInputFieldsDisabled(false);
     }
 
-
     @FXML
     private void onEditRecipe() {
         if (!confirmCancelRecipe()) return;
@@ -201,19 +200,17 @@ public class RecipeManagementController {
         String name = recipeNameTF.getText().trim();
         String preparation = preparationTA.getText().trim();
 
-        if (!ValidationHelper.validateName(recipeNameTF)) return;
+        // Eingabefelder validieren
+        if (!ValidationHelper.validateName(recipeNameTF, "Rezeptname")) return;
         if (!ValidationHelper.validateServings(servingsTF)) return;
-        if (!ValidationHelper.validateName(ingredientNameTF)) return;
-        if (!ValidationHelper.validateAmount(ingredientAmountTF)) return;
-        if (!ValidationHelper.validateUnit(ingredientUnitTF)) return;
-
-
-        int baseServings = (int) Double.parseDouble(servingsTF.getText().trim().replace(",", "."));
 
         if (ingredientList.isEmpty()) {
             DialogHelper.warningDialog("Keine Zutaten", "Bitte füge mindestens eine Zutat hinzu.");
             return;
         }
+
+        int baseServings = (int) Double.parseDouble(servingsTF.getText().trim().replace(",", "."));
+
 
         List<Ingredient> ingredientsCopy = new ArrayList<>(ingredientList);
 
@@ -270,7 +267,7 @@ public class RecipeManagementController {
     private void onAddIngredient(){
 
         // Eingabefelder validieren
-        if (!ValidationHelper.validateName(ingredientNameTF)) return;
+        if (!ValidationHelper.validateName(ingredientNameTF, "Zutat")) return;
         if (!ValidationHelper.validateAmount(ingredientAmountTF)) return;
         if (!ValidationHelper.validateUnit(ingredientUnitTF)) return;
 
@@ -309,6 +306,12 @@ public class RecipeManagementController {
         }
     }
 
+    /*
+     * Bestätigt, ob der Benutzer das Rezept wirklich verwerfen möchte.
+     * Wenn ja, werden die Eingabefelder zurückgesetzt und deaktiviert.
+     *
+     * @return true, wenn das Rezept verworfen werden soll, sonst false
+     */
     private boolean confirmCancelRecipe() {
         if (recipeInEdit == null && recipeNameTF.getText().trim().isEmpty()) {
             return true;

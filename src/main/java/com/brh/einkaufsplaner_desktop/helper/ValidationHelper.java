@@ -13,23 +13,24 @@ public class ValidationHelper {
     /**
      * Validiert den Artikelnamen: darf nicht leer sein, nur Buchstaben enthalten.
      */
-    public static boolean validateName(TextField tf) {
+    public static boolean validateName(TextField tf, String fieldName) {
         String text = tf.getText().trim();
 
         if (isNullOrBlank(text)) {
-            warningDialog("Eingabefehler", "Artikelname darf nicht leer sein.");
+            warningDialog("Eingabefehler", fieldName + " darf nicht leer sein.");
             tf.requestFocus();
             return false;
         }
 
         if (!isLettersOnly(text)) {
-            warningDialog("Ungültige Eingabe", "Artikelname darf nur Buchstaben enthalten.");
+            warningDialog("Ungültige Eingabe", fieldName + " darf nur Buchstaben enthalten.");
             tf.requestFocus();
             return false;
         }
 
         return true;
     }
+
 
     /**
      * Validiert die Menge: darf nicht leer sein, muss eine Zahl > 0 sein.
@@ -68,7 +69,11 @@ public class ValidationHelper {
     public static boolean validateUnit(TextField tf) {
         String text = tf.getText().trim();
 
-        if (text.isEmpty()) return true; // leer = erlaubt
+        if (text.isEmpty()){
+            DialogHelper.warningDialog("Eingabefehler", "Einheit darf nicht leer sein.");
+            tf.requestFocus();
+            return false;
+        }
 
         if (!isLettersOnly(text)) {
             warningDialog("Ungültige Eingabe", "Einheit darf nur Buchstaben enthalten.");

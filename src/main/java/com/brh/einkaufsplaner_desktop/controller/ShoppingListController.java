@@ -1,6 +1,8 @@
 package com.brh.einkaufsplaner_desktop.controller;
 import com.brh.einkaufsplaner_desktop.helper.ValidationHelper;
 import com.brh.einkaufsplaner_desktop.model.Article;
+import com.brh.einkaufsplaner_desktop.model.Recipe;
+import com.brh.einkaufsplaner_desktop.service.RecipeService;
 import com.brh.einkaufsplaner_desktop.service.ShoppingListService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,15 +10,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.brh.einkaufsplaner_desktop.helper.DialogHelper.*;
 import static com.brh.einkaufsplaner_desktop.service.ShoppingListService.saveArticles;
 
@@ -33,6 +35,8 @@ public class ShoppingListController {
     @FXML private TableColumn<Article, Boolean> articleBoughtCol;
 
     @FXML private Button openRecipeManagementBtn;
+
+    @FXML private ComboBox<String> selectRecipeCB;
 
     // Zum Aktualisieren der Einkaufsliste bei Änderungen (quasi unser Listener f
     private final ObservableList<Article> shoppingList = FXCollections.observableArrayList();
@@ -71,6 +75,9 @@ public class ShoppingListController {
         // Checkbox-Spalte für "Gekauft" erstellen
         articleBoughtCol.setCellValueFactory(new PropertyValueFactory<>("bought"));
         articleBoughtCol.setCellFactory(CheckBoxTableCell.forTableColumn(articleBoughtCol));
+
+        // Lädt die Rezepte in die ComboBox
+        loadRecipesIntoComboBox();
     }
 
     /**
@@ -80,7 +87,7 @@ public class ShoppingListController {
     private void onAddArticle() {
 
         // Eingabefelder validieren
-        if (!ValidationHelper.validateName(articleNameTF)) return;
+        if (!ValidationHelper.validateName(articleNameTF, "Artikelname")) return;
         if (!ValidationHelper.validateAmount(articleAmountTF)) return;
         if (!ValidationHelper.validateUnit(articleUnitTF)) return;
 
@@ -187,6 +194,26 @@ public class ShoppingListController {
     private void onSelectRecipe(){
         //Todo: Auswählen eines Rezepts aus der Rezeptsammlung
     }
+
+    /**
+     * Lädt die Rezepte in die ComboBox.
+     */
+    private void loadRecipesIntoComboBox() {
+        // Rezepte aus der JSON-Datei laden
+        List<Recipe> recipes = RecipeService.loadRecipes();
+
+        // Erstelle eine Liste für die Rezeptnamen
+        List<String> recipeNames = new ArrayList<>();
+
+        // Iteriere über die Rezepte und füge die Namen zur Liste hinzu
+        for (Recipe recipe : recipes) {
+            recipeNames.add(recipe.getName());
+        }
+
+        // Aktualisiere der Rezepte in der ComboBox durch den Beobachter
+        selectRecipeCB.setItems(FXCollections.observableArrayList(recipeNames));
+    }
+
 
     /**
      * Speichert die Einkaufsliste in einer CSV-Datei.
