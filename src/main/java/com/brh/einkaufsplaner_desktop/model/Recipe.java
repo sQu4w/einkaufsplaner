@@ -44,9 +44,14 @@ public class Recipe {
 
         // Skaliert jede Zutat in der Liste
         for (Ingredient ing : ingredients){
+
+            // Skaliere und runde immer auf die nächste Zahl
+            double scaledAmount = Math.ceil(ing.getAmount() * factor);
+
+            // Erstelle eine neue Zutat mit dem skalierten Wert
             Ingredient scaled = new Ingredient(
                     ing.getName(),
-                    ing.getAmount() * factor,
+                    scaledAmount,
                     ing.getUnit()
             );
             // Fügt die skalierte Zutat der Liste hinzu

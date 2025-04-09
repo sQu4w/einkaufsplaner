@@ -84,50 +84,6 @@ public class DialogHelper {
     }
 
     /**
-     * Zeigt einen Dialog mit drei Optionen:
-     * - "Speichern": Die Änderungen sollen gespeichert werden
-     * - "Verwerfen": Die Änderungen sollen verworfen werden
-     * - "Abbrechen": Die Aktion wird abgebrochen, der Nutzer bleibt im aktuellen Zustand
-     *
-     * Beispiel:
-     * Wenn der Nutzer z.B. ein Rezept verändert und die Anwendung geschlossen werden soll,
-     * kann man mit dieser Methode fragen, ob die Änderungen gespeichert werden sollen.
-     *
-     * @param title   Der Titel des Dialogs
-     * @param message Die eigentliche Frage oder Information im Dialog
-     * @return Ein String mit dem Namen der gewählten Option ("Speichern", "Verwerfen" oder "Abbrechen")
-     */
-    public static String saveChangesDialog(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-
-        // Erstellung von drei Buttons für die Auswahl
-        ButtonType saveButton = new ButtonType("Speichern");
-        ButtonType discardButton = new ButtonType("Verwerfen");
-        ButtonType cancelButton = new ButtonType("Abbrechen", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-        // Die Standard-Buttons ("OK" und "Cancel") durch eigene ersetzen
-        alert.getButtonTypes().setAll(saveButton, discardButton, cancelButton);
-
-        // Zeigt den Dialog an und wartet auf die Benutzerentscheidung
-        Optional<ButtonType> result = alert.showAndWait();
-
-        // Gibt den Namen der gewählten Option zurück
-        if (result.isPresent()) {
-            if (result.get() == saveButton) {
-                return "Speichern";
-            } else if (result.get() == discardButton) {
-                return "Verwerfen";
-            } else {
-                return "Abbrechen";
-            }
-        }
-        return "Abbrechen";
-    }
-
-    /**
      * Zeigt einen Bestätigungsdialog für das Löschen eines Elements
      * (z.B. Artikel oder Rezept)
      *

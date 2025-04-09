@@ -1,5 +1,7 @@
 package com.brh.einkaufsplaner_desktop.service;
 
+import com.brh.einkaufsplaner_desktop.helper.DialogHelper;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -48,7 +50,8 @@ public class DataInitializer {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Fehler beim Erstellen der Datei '" + filename + "':");
+            DialogHelper.errorDialog("Fehlermeldung",
+                    "Die Datei " + filename + " konnte nicht erstellt werden.");
             e.printStackTrace();
         }
     }

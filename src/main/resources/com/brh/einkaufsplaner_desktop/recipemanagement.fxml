@@ -110,7 +110,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="98.0" prefWidth="165.0">
                            <children>
-                              <Button fx:id="addIngredientBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onAddIngredient" prefHeight="31.0" prefWidth="88.0" text="+">
+                              <Button fx:id="addIngredientBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onAddIngredient" prefHeight="30.0" prefWidth="83.0" text="+">
                                  <font>
                                     <Font size="26.0" />
                                  </font>
@@ -118,10 +118,13 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="deleteIngredientBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onDeleteIngredient" prefHeight="31.0" prefWidth="88.0" text="🗑" textAlignment="CENTER">
+                              <Button fx:id="deleteIngredientBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onDeleteIngredient" prefHeight="45.0" prefWidth="83.0" text="🗑" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
                               </Button>
                            </children>
                         </VBox>

@@ -104,7 +104,7 @@
                               <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
                                  <children>
                                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="100.0" text="Rezept" />
-                                    <ComboBox fx:id="selectRecipeCB" onAction="#onSelectRecipe" prefHeight="26.0" prefWidth="150.0" visibleRowCount="10000" />
+                                    <ComboBox fx:id="selectRecipeCB" prefHeight="26.0" prefWidth="150.0" visibleRowCount="10000" />
                                  </children>
                               </HBox>
                            </children>

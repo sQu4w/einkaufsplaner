@@ -1,6 +1,7 @@
 package com.brh.einkaufsplaner_desktop.controller;
 import com.brh.einkaufsplaner_desktop.helper.ValidationHelper;
 import com.brh.einkaufsplaner_desktop.model.Article;
+import com.brh.einkaufsplaner_desktop.model.Ingredient;
 import com.brh.einkaufsplaner_desktop.model.Recipe;
 import com.brh.einkaufsplaner_desktop.service.RecipeService;
 import com.brh.einkaufsplaner_desktop.service.ShoppingListService;
@@ -27,6 +28,7 @@ public class ShoppingListController {
     @FXML private TextField articleNameTF;
     @FXML private TextField articleAmountTF;
     @FXML private TextField articleUnitTF;
+    @FXML private TextField selectServingsTF;
 
     @FXML private TableView<Article> shoppingListTV;
     @FXML private TableColumn<Article, String> articleItemCol;
@@ -111,7 +113,9 @@ public class ShoppingListController {
     }
 
 
-
+    /**
+     * Löscht einen ausgewählten Artikel aus der Einkaufsliste.
+     */
     @FXML
     private void onDeleteArticle() {
         Article selectedArticle = shoppingListTV.getSelectionModel().getSelectedItem();
@@ -184,16 +188,81 @@ public class ShoppingListController {
         }
     }
 
-
+    /**
+     * Fügt die Zutaten eines ausgewählten Rezepts zur Einkaufsliste hinzu.
+     * Wenn der Benutzer eine Portion angegeben hat, wird diese verwendet,
+     * andernfalls wird die Basisportion des Rezepts verwendet.
+     */
     @FXML
-    private void onAddRecipe(){
-        //Todo: Hinzufügen eines Rezepts zur Einkaufsliste
+    private void onAddRecipeToShoppingList() {
+        String selectedRecipeName = selectRecipeCB.getValue();
+        String servingsText = selectServingsTF.getText().trim();
+
+        // Wenn kein Rezept ausgewählt ist → Dialog anzeigen und abbrechen
+        if (selectedRecipeName == null || selectedRecipeName.isEmpty()) {
+            warningDialog("Kein Rezept ausgewählt", "Bitte wähle ein Rezept aus der Liste.");
+            return;
+        }
+
+        // Rezept aus der Liste laden
+        List<Recipe> allRecipes = RecipeService.loadRecipes();
+        Recipe selectedRecipe = null;
+
+        for (Recipe r : allRecipes) {
+            if (r.getName().equalsIgnoreCase(selectedRecipeName)) {
+                selectedRecipe = r;
+                break;
+            }
+        }
+
+        if (selectedRecipe == null) {
+            errorDialog("Rezept nicht gefunden", "Das Rezept konnte nicht geladen werden.");
+            return;
+        }
+
+        // Basisportionen aus dem ausgewählten Rezept holen
+        int servings = selectedRecipe.getBaseServings();
+
+        // Wenn Benutzer etwas eingegeben hat → versuchen umzuwandeln
+        if (!servingsText.isEmpty()) {
+            try {
+                servings = Integer.parseInt(servingsText);
+                if (servings <= 0) throw new NumberFormatException();
+            } catch (NumberFormatException e) {
+                errorDialog("Ungültige Eingabe", "Bitte gib eine gültige Anzahl an Portionen ein oder lasse das Feld leer.");
+                return;
+            }
+        }
+
+        // Zutaten (ggf. skaliert) zur Einkaufsliste hinzufügen
+        List<Ingredient> ingredients = selectedRecipe.getScaledIngredients(servings);
+
+        for (Ingredient ingredient : ingredients) {
+            boolean found = false;
+
+            for (Article article : shoppingList) {
+                if (ingredient.getName().equalsIgnoreCase(article.getName()) &&
+                        ingredient.getUnit().equalsIgnoreCase(article.getUnit())) {
+                    article.setAmount(article.getAmount() + ingredient.getAmount());
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                Article newArticle = new Article(false, ingredient.getName(), ingredient.getAmount(), ingredient.getUnit());
+                shoppingList.add(newArticle);
+            }
+        }
+
+        saveShoppingList();
+        infoDialog("Rezept übernommen", "Die Zutaten wurden zur Einkaufsliste hinzugefügt.");
+
+        // Felder zurücksetzen
+        selectServingsTF.clear();
+        selectRecipeCB.getSelectionModel().clearSelection();
     }
 
-    @FXML
-    private void onSelectRecipe(){
-        //Todo: Auswählen eines Rezepts aus der Rezeptsammlung
-    }
 
     /**
      * Lädt die Rezepte in die ComboBox.
@@ -220,7 +289,7 @@ public class ShoppingListController {
      */
     private void saveShoppingList(){
         File file = new File("data/shopping_list.csv");
-        saveArticles(shoppingList, file);
+        ShoppingListService.saveArticles(shoppingList, file);
     }
 
 

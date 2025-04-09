@@ -2,9 +2,6 @@ package com.brh.einkaufsplaner_desktop.helper;
 
 import javafx.scene.control.TextField;
 
-import static com.brh.einkaufsplaner_desktop.helper.DialogHelper.errorDialog;
-import static com.brh.einkaufsplaner_desktop.helper.DialogHelper.warningDialog;
-
 /**
  * Hilfsklasse zur Validierung von Benutzereingaben.
  */
@@ -17,13 +14,13 @@ public class ValidationHelper {
         String text = tf.getText().trim();
 
         if (isNullOrBlank(text)) {
-            warningDialog("Eingabefehler", fieldName + " darf nicht leer sein.");
+            DialogHelper.warningDialog("Eingabefehler", fieldName + " darf nicht leer sein.");
             tf.requestFocus();
             return false;
         }
 
         if (!isLettersOnly(text)) {
-            warningDialog("Ungültige Eingabe", fieldName + " darf nur Buchstaben enthalten.");
+            DialogHelper.warningDialog("Ungültige Eingabe", fieldName + " darf nur Buchstaben enthalten.");
             tf.requestFocus();
             return false;
         }
@@ -39,7 +36,7 @@ public class ValidationHelper {
         String text = tf.getText().trim();
 
         if (isNullOrBlank(text)) {
-            warningDialog("Eingabefehler", "Menge darf nicht leer sein.");
+            DialogHelper.warningDialog("Eingabefehler", "Menge darf nicht leer sein.");
             tf.requestFocus();
             return false;
         }
@@ -49,13 +46,13 @@ public class ValidationHelper {
             double value = Double.parseDouble(text);
 
             if (value <= 0) {
-                warningDialog("Ungültige Eingabe", "Menge muss größer als 0 sein.");
+                DialogHelper.warningDialog("Ungültige Eingabe", "Menge muss größer als 0 sein.");
                 tf.requestFocus();
                 return false;
             }
 
         } catch (NumberFormatException e) {
-            errorDialog("Ungültige Eingabe", "Menge muss eine gültige Zahl sein.");
+            DialogHelper.errorDialog("Ungültige Eingabe", "Menge muss eine gültige Zahl sein.");
             tf.requestFocus();
             return false;
         }
@@ -76,7 +73,7 @@ public class ValidationHelper {
         }
 
         if (!isLettersOnly(text)) {
-            warningDialog("Ungültige Eingabe", "Einheit darf nur Buchstaben enthalten.");
+            DialogHelper.warningDialog("Ungültige Eingabe", "Einheit darf nur Buchstaben enthalten.");
             tf.requestFocus();
             return false;
         }
@@ -91,7 +88,7 @@ public class ValidationHelper {
         String text = tf.getText().trim();
 
         if (isNullOrBlank(text)) {
-            warningDialog("Eingabefehler", "Portionen dürfen nicht leer sein.");
+            DialogHelper.warningDialog("Eingabefehler", "Portionen dürfen nicht leer sein.");
             tf.requestFocus();
             return false;
         }
@@ -99,13 +96,13 @@ public class ValidationHelper {
         try {
             int value = Integer.parseInt(text);
             if (value <= 0) {
-                warningDialog("Ungültige Eingabe", "Portionen müssen größer als 0 sein.");
+                DialogHelper.warningDialog("Ungültige Eingabe", "Portionen müssen größer als 0 sein.");
                 tf.requestFocus();
                 return false;
             }
 
         } catch (NumberFormatException e) {
-            errorDialog("Ungültige Eingabe", "Portionen müssen eine ganze Zahl sein.");
+            DialogHelper.errorDialog("Ungültige Eingabe", "Portionen müssen eine ganze Zahl sein.");
             tf.requestFocus();
             return false;
         }
