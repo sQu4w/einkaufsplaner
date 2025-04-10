@@ -1,11 +1,16 @@
-false;Brot;2.0;Stück
-false;Kekse;1.0;Packung
-false;Apfelsaft;2.0;Flaschen
-false;Schokolade;3.0;Tafeln
-false;Wasser;6.0;Flaschen
-false;Karotten;5.0;Stück
-false;Tee;2.0;Packungen
-false;Pfeffer;3.5;g
-false;Eier;3.0;Stück
+false;Kartoffeln;200.0;g
+false;Karotten;134.0;g
+false;Zucchini;167.0;g
+false;Kokosmilch;267.0;ml
+false;Currypaste;14.0;g
+false;Öl;12.0;ml
 false;Salz;2.0;g
-false;Pflanzenöl;2.0;g
+false;Mehl;100.0;g
+false;Eier;1.0;Stück
+false;Spaghett;200.0;g
+false;Milch;150.0;ml
+false;Rinderhackfleisch;150.0;g
+false;Zwiebel;75.0;g
+false;gehackte Tomaten;200.0;g
+false;Tomatanmark;20.0;g
+false;Pfeffer;1.0;g

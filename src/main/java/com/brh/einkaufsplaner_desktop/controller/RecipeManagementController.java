@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class RecipeManagementController {
     @FXML private TextField ingredientAmountTF;
     @FXML private TextField ingredientUnitTF;
 
-    // TableView für Zutaten
+    // Tabelle für Zutaten
     @FXML private TableView<Ingredient> ingredientListTV;
     @FXML private TableColumn<Ingredient, String> ingredientItemCol;
     @FXML private TableColumn<Ingredient, Double> ingredientAmountCol;
@@ -97,6 +98,10 @@ public class RecipeManagementController {
 
         // Felder zu Beginn deaktivieren
         setInputFieldsDisabled(true);
+
+        // Wenn der Benutzer doppelt auf ein Rezept in der Liste klickt,
+        // wird die Methode onDoubleClickRecipe aufgerufen, um die Rezeptdetails anzuzeigen.
+        recipeLV.setOnMouseClicked(this::onDoubleClickRecipe);
     }
 
     /**
@@ -112,6 +117,9 @@ public class RecipeManagementController {
         setInputFieldsDisabled(false);
     }
 
+    /**
+     * Lädt ein Rezept in die Eingabefelder zur Bearbeitung.
+     */
     @FXML
     private void onEditRecipe() {
         if (!confirmCancelRecipe()) return;
@@ -178,8 +186,6 @@ public class RecipeManagementController {
 
             // Datei aktualisieren
             RecipeService.saveRecipes(recipes);
-
-            DialogHelper.infoDialog("Rezept gelöscht", "Das Rezept wurde erfolgreich gelöscht.");
         } else {
             DialogHelper.errorDialog("Fehler", "Das Rezept konnte nicht gefunden werden.");
         }
@@ -306,6 +312,45 @@ public class RecipeManagementController {
         }
     }
 
+    /**
+     * Zeigt die Rezeptdetails in einem Dialog an, wenn der Benutzer doppelt auf ein Rezept klickt.
+     *
+     * @param event Das MouseEvent-Objekt
+     */
+    @FXML
+    private void onDoubleClickRecipe(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+            String selectedName = recipeLV.getSelectionModel().getSelectedItem();
+
+            if (selectedName == null) return;
+
+            for (Recipe recipe : recipes) {
+                if (recipe.getName().equals(selectedName)) {
+
+                    // Rezeptdetails zusammenbauen
+                    StringBuilder details = new StringBuilder();
+                    details.append("Name: ").append(recipe.getName()).append("\n");
+                    details.append("Portionen: ").append(recipe.getBaseServings()).append("\n\n");
+                    details.append("Zutaten:\n");
+
+                    for (Ingredient ing : recipe.getIngredients()) {
+                        details.append(String.format("- %s %.2f %s\n",
+                                ing.getName(),
+                                ing.getAmount(),
+                                ing.getUnit()));
+                    }
+
+                    details.append("\nZubereitung:\n").append(recipe.getPreparation());
+
+                    // Dialog anzeigen
+                    DialogHelper.recipeDetailsDialog("Rezeptdetails", details.toString());
+                    break;
+                }
+            }
+        }
+    }
+
+
     /*
      * Bestätigt, ob der Benutzer das Rezept wirklich verwerfen möchte.
      * Wenn ja, werden die Eingabefelder zurückgesetzt und deaktiviert.
@@ -348,7 +393,6 @@ public class RecipeManagementController {
         // Deaktivieren der Eingabefelder
         setInputFieldsDisabled(true);
     }
-
 
     /*
      * Diese Methode wird aufgerufen, wenn der Benutzer die Rezeptliste ändert.

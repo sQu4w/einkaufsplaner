@@ -1,8 +1,9 @@
 package com.brh.einkaufsplaner_desktop.helper;
 
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.GridPane;
 
 import java.util.Optional;
 
@@ -97,4 +98,31 @@ public class DialogHelper {
         );
     }
 
+    /**
+     * Zeigt einen Dialog mit den Details eines Rezepts an.
+     *
+     * @param title   Titel des Dialogs
+     * @param message Nachricht im Dialog
+     */
+    public static void recipeDetailsDialog(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+
+        // TextArea für den Nachrichtentext
+        TextArea textArea = new TextArea(message);
+        textArea.setWrapText(true);
+        textArea.setEditable(false);
+        textArea.setMaxWidth(Double.MAX_VALUE);
+        textArea.setMaxHeight(Double.MAX_VALUE);
+
+        // Layout-Anpassung
+        GridPane content = new GridPane();
+        content.setMaxWidth(Double.MAX_VALUE);
+        content.add(textArea, 0, 0);
+
+        // Setzt den Inhalt des Dialogs
+        alert.getDialogPane().setContent(content);
+        alert.showAndWait();
+    }
 }

@@ -5,6 +5,8 @@ import com.brh.einkaufsplaner_desktop.model.Ingredient;
 import com.brh.einkaufsplaner_desktop.model.Recipe;
 import com.brh.einkaufsplaner_desktop.service.RecipeService;
 import com.brh.einkaufsplaner_desktop.service.ShoppingListService;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,6 +17,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,17 +29,20 @@ import static com.brh.einkaufsplaner_desktop.service.ShoppingListService.saveArt
 
 public class ShoppingListController {
 
+    // Textfelder
     @FXML private TextField articleNameTF;
     @FXML private TextField articleAmountTF;
     @FXML private TextField articleUnitTF;
     @FXML private TextField selectServingsTF;
 
+    // Tabellen für Artikel
     @FXML private TableView<Article> shoppingListTV;
     @FXML private TableColumn<Article, String> articleItemCol;
     @FXML private TableColumn<Article, Double> articleAmountCol;
     @FXML private TableColumn<Article, String> articleUnitCol;
     @FXML private TableColumn<Article, Boolean> articleBoughtCol;
 
+    // Buttons
     @FXML private Button openRecipeManagementBtn;
 
     @FXML private ComboBox<String> selectRecipeCB;
@@ -112,7 +119,6 @@ public class ShoppingListController {
         saveShoppingList();
     }
 
-
     /**
      * Löscht einen ausgewählten Artikel aus der Einkaufsliste.
      */
@@ -134,7 +140,9 @@ public class ShoppingListController {
         }
     }
 
-
+    /**
+     * Löscht alle Artikel aus der Einkaufsliste.
+     */
     @FXML
     private void onDeleteShoppingList() {
         boolean confirmed = confirmDialog(
@@ -283,7 +291,6 @@ public class ShoppingListController {
         selectRecipeCB.setItems(FXCollections.observableArrayList(recipeNames));
     }
 
-
     /**
      * Speichert die Einkaufsliste in einer CSV-Datei.
      */
@@ -291,6 +298,4 @@ public class ShoppingListController {
         File file = new File("data/shopping_list.csv");
         ShoppingListService.saveArticles(shoppingList, file);
     }
-
-
 }

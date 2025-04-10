@@ -1,115 +1,192 @@
 [
   {
-    "name": "Gemüsesuppe",
+    "name": "Pfannkuchen",
     "ingredients": [
       {
-        "amount": 2,
-        "unit": "Stück",
-        "name": "Karotten"
+        "amount": 200,
+        "unit": "g",
+        "name": "Mehl"
+      },
+      {
+        "amount": 300,
+        "unit": "ml",
+        "name": "Milch"
       },
       {
         "amount": 2,
         "unit": "Stück",
-        "name": "Sellerie"
+        "name": "Eier"
+      }
+    ],
+    "baseServings": 4,
+    "preparation": "Mehl, Milch, Eier und Salz zu einem glatten Teig verrühren. \nEtwas Butter in einer Pfanne erhitzen und aus dem Teig nacheinander Pfannkuchen ausbacken."
+  },
+  {
+    "name": "Spaghetti Bolognese",
+    "ingredients": [
+      {
+        "amount": 400,
+        "unit": "g",
+        "name": "Spaghett"
       },
       {
         "amount": 300,
         "unit": "g",
-        "name": "Maultaschen"
+        "name": "Rinderhackfleisch"
       },
       {
-        "amount": 20,
+        "amount": 150,
         "unit": "g",
-        "name": "Gemüsebrühe"
+        "name": "Zwiebel"
       },
       {
-        "amount": 3,
-        "unit": "Stück",
-        "name": "Zwiebeln"
+        "amount": 400,
+        "unit": "g",
+        "name": "gehackte Tomaten"
+      },
+      {
+        "amount": 40,
+        "unit": "g",
+        "name": "Tomatanmark"
+      },
+      {
+        "amount": 10,
+        "unit": "ml",
+        "name": "Öl"
       },
       {
         "amount": 1,
-        "unit": "Bund",
-        "name": "Petersilie"
-      }
-    ],
-    "baseServings": 2,
-    "preparation": "Alles klein schnibbln und im Topf köcheln lassen"
-  },
-  {
-    "name": "Rührei",
-    "ingredients": [
-      {
-        "amount": 8,
-        "unit": "Stück",
-        "name": "Eier"
-      },
-      {
-        "amount": 5,
         "unit": "g",
         "name": "Salz"
       },
       {
-        "amount": 3,
+        "amount": 0.5,
+        "unit": "g",
+        "name": "Pfeffer"
+      }
+    ],
+    "baseServings": 4,
+    "preparation": "Zwiebel fein hacken und im Öl anbraten. Hackfleisch hinzufügen und krümelig braten. Tomaten und Tomatenmark dazugeben, würzen und ca. 20 Minuten köcheln lassen. In der Zwischenzeit Spaghetti kochen, dann alles zusammen servieren."
+  },
+  {
+    "name": "Gurkensalat",
+    "ingredients": [
+      {
+        "amount": 300,
+        "unit": "g",
+        "name": "Gurken"
+      },
+      {
+        "amount": 20,
+        "unit": "ml",
+        "name": "Essig"
+      },
+      {
+        "amount": 10,
+        "unit": "ml",
+        "name": "Öl"
+      },
+      {
+        "amount": 1,
+        "unit": "g",
+        "name": "Salz"
+      },
+      {
+        "amount": 0.5,
         "unit": "g",
         "name": "Pfeffer"
       },
       {
         "amount": 5,
         "unit": "g",
-        "name": "Pflanzenöl"
+        "name": "Zucker"
+      }
+    ],
+    "baseServings": 2,
+    "preparation": "Gurke in feine Scheiben hobeln. \nMit Essig, Öl, Salz, Pfeffer und Zucker marinieren \nund einige Minuten ziehen lassen."
+  },
+  {
+    "name": "Gemüse Curry",
+    "ingredients": [
+      {
+        "amount": 300,
+        "unit": "g",
+        "name": "Kartoffeln"
+      },
+      {
+        "amount": 200,
+        "unit": "g",
+        "name": "Karotten"
+      },
+      {
+        "amount": 250,
+        "unit": "g",
+        "name": "Zucchini"
+      },
+      {
+        "amount": 400,
+        "unit": "ml",
+        "name": "Kokosmilch"
+      },
+      {
+        "amount": 20,
+        "unit": "g",
+        "name": "Currypaste"
+      },
+      {
+        "amount": 10,
+        "unit": "ml",
+        "name": "Öl"
+      },
+      {
+        "amount": 1,
+        "unit": "g",
+        "name": "Salz"
       }
     ],
     "baseServings": 3,
-    "preparation": "Eier mit Öl in der Pfanne braten und anschließend mit\nSalz und Pfeffer würzen."
+    "preparation": "Gemüse schälen und würfeln. \nÖl in einem Topf erhitzen, Currypaste kurz anbraten. \nGemüse dazugeben, mit Kokosmilch aufgießen und 15\u201320 Minuten köcheln lassen, \nbis das Gemüse weich ist. Mit Salz abschmecken."
   },
   {
-    "name": "Avocado Toast",
+    "name": "Zitronenkuchen",
     "ingredients": [
       {
-        "amount": 2,
-        "unit": "Stück",
-        "name": "Avocado"
+        "amount": 250,
+        "unit": "g",
+        "name": "Mehl"
       },
       {
-        "amount": 4,
+        "amount": 200,
+        "unit": "g",
+        "name": "Zucker"
+      },
+      {
+        "amount": 3,
         "unit": "Stück",
         "name": "Eier"
       },
       {
-        "amount": 4,
-        "unit": "Scheiben",
-        "name": "Brot"
-      }
-    ],
-    "baseServings": 3,
-    "preparation": "Eier in Pfanne braten\nBrot in Pfanne kurz anrösten\nAvocado in scheiben schneiden\nZutaten auf dem Brot anrichten, \nbeliebig würzen und genießen"
-  },
-  {
-    "name": "Zwiebelsuppe",
-    "ingredients": [
+        "amount": 150,
+        "unit": "g",
+        "name": "Butter"
+      },
       {
-        "amount": 10,
-        "unit": "Stück",
-        "name": "Zwiebeln"
+        "amount": 15,
+        "unit": "g",
+        "name": "Backpulver"
+      },
+      {
+        "amount": 50,
+        "unit": "ml",
+        "name": "Zitronensaft"
       },
       {
         "amount": 5,
-        "unit": "Scheiben",
-        "name": "Käse"
-      },
-      {
-        "amount": 10,
         "unit": "g",
-        "name": "Gemüsebrühe"
-      },
-      {
-        "amount": 2,
-        "unit": "g",
-        "name": "Pfeffer"
+        "name": "Zitronenschale"
       }
     ],
-    "baseServings": 2,
-    "preparation": ""
+    "baseServings": 8,
+    "preparation": "Butter, Zucker und Eier schaumig schlagen. \nMehl und Backpulver mischen und unterrühren. \nZitronensaft und Zitronenschale zugeben. \nIn eine gefettete Form geben und bei 180 °C ca. 40 Minuten backen."
   }
 ]

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Klasse für Rezepte
+ * Modelliert ein Rezept mit Name, Grundportion, Zutaten und Zubereitung.
  */
 public class Recipe {
     private String name;
@@ -31,6 +31,7 @@ public class Recipe {
 
     public String getPreparation() {return preparation;}
     public void setPreparation(String preparation) {this.preparation = preparation;}
+
     /**
      * Skaliert die Zutatenliste auf die gewünschte Portionen für die Einkaufsliste
      * @param servings Die gewünschte Portionen

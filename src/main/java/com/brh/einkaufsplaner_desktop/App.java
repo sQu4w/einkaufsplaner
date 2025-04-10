@@ -24,7 +24,7 @@ public class App extends Application {
 
         // Setzt die Szene auf die geladene FXML-Datei und ihre Größe mit der sie erstellt wurde
         stage.setScene(new Scene(root));
-        stage.setTitle("Einkaufsplaner");
+        stage.setTitle("MealMatch Einkaufsplaner");
         stage.show();
         stage.setY(50);
     }

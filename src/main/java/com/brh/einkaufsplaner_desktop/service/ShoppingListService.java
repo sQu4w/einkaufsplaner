@@ -24,6 +24,7 @@ public class ShoppingListService {
         // Liste für Artikel erstellen
         List<Article> articles = new ArrayList<>();
 
+        // Versuchen, die CSV-Datei zu lesen
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
 

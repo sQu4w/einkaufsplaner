@@ -111,7 +111,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="98.0" prefWidth="150.0">
                            <children>
-                              <Button fx:id="addRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onAddRecipe" prefHeight="60.0" prefWidth="59.0" text="+">
+                              <Button fx:id="addRecipeBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onAddRecipeToShoppingList" prefHeight="60.0" prefWidth="59.0" text="+">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
