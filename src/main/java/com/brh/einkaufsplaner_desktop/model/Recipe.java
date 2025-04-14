@@ -1,5 +1,4 @@
 package com.brh.einkaufsplaner_desktop.model;
-
 import java.util.ArrayList;
 import java.util.List;
 

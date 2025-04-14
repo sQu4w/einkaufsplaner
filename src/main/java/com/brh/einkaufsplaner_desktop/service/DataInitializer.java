@@ -1,7 +1,5 @@
 package com.brh.einkaufsplaner_desktop.service;
-
 import com.brh.einkaufsplaner_desktop.helper.DialogHelper;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

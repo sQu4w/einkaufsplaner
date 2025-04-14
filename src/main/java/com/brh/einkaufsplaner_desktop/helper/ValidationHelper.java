@@ -1,5 +1,4 @@
 package com.brh.einkaufsplaner_desktop.helper;
-
 import javafx.scene.control.TextField;
 
 /**

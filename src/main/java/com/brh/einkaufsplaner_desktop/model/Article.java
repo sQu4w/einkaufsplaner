@@ -1,5 +1,4 @@
 package com.brh.einkaufsplaner_desktop.model;
-
 import javafx.beans.property.*;
 
 public class Article {

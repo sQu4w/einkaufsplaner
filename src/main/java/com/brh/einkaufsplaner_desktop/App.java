@@ -1,5 +1,4 @@
 package com.brh.einkaufsplaner_desktop;
-
 import com.brh.einkaufsplaner_desktop.service.DataInitializer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

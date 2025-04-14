@@ -1,27 +1,16 @@
 package com.brh.einkaufsplaner_desktop.controller;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class HomeScreenController {
 
-    @FXML
-    private Button openShoppingListBtn;
-
-    @FXML
-    private Button openRecipeManagementBtn;
-
-    // Todo: Initalisierungs-Methode, die beim Start des Controllers aufgerufen wird
-    //    @FXML
-    //    private void initialize(){
-    //
-    //    }
+    @FXML private Button openShoppingListBtn;
+    @FXML private Button openRecipeManagementBtn;
 
     /**
      * Öffnet die Ansicht für die Einkaufsliste

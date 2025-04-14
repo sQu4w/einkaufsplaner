@@ -5,8 +5,6 @@ import com.brh.einkaufsplaner_desktop.model.Ingredient;
 import com.brh.einkaufsplaner_desktop.model.Recipe;
 import com.brh.einkaufsplaner_desktop.service.RecipeService;
 import com.brh.einkaufsplaner_desktop.service.ShoppingListService;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,15 +15,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import static com.brh.einkaufsplaner_desktop.helper.DialogHelper.*;
-import static com.brh.einkaufsplaner_desktop.service.ShoppingListService.saveArticles;
 
 public class ShoppingListController {
 
@@ -35,7 +29,7 @@ public class ShoppingListController {
     @FXML private TextField articleUnitTF;
     @FXML private TextField selectServingsTF;
 
-    // Tabellen für Artikel
+    // Tabelle für Artikel
     @FXML private TableView<Article> shoppingListTV;
     @FXML private TableColumn<Article, String> articleItemCol;
     @FXML private TableColumn<Article, Double> articleAmountCol;
@@ -45,6 +39,8 @@ public class ShoppingListController {
     // Buttons
     @FXML private Button openRecipeManagementBtn;
 
+    // Dropdowns
+    @FXML private ComboBox<String> articleUnitCB;
     @FXML private ComboBox<String> selectRecipeCB;
 
     // Zum Aktualisieren der Einkaufsliste bei Änderungen (quasi unser Listener f
@@ -106,8 +102,7 @@ public class ShoppingListController {
         String unit = articleUnitTF.getText().trim();
 
         // Artikel erstellen und zur Liste hinzufügen
-        Article article = new Article(false, name, amount, unit);
-        shoppingList.add(article);
+        updateArticle(name, amount, unit);
 
         // Eingabefelder leeren
         articleNameTF.clear();
@@ -153,7 +148,6 @@ public class ShoppingListController {
             shoppingList.clear();
             shoppingListTV.getItems().clear();// View aktualisieren
             saveShoppingList();
-            infoDialog("Liste gelöscht", "Die Einkaufsliste wurde erfolgreich gelöscht.");
         }
     }
 
@@ -230,8 +224,6 @@ public class ShoppingListController {
 
         // Basisportionen aus dem ausgewählten Rezept holen
         int servings = selectedRecipe.getBaseServings();
-
-        // Wenn Benutzer etwas eingegeben hat → versuchen umzuwandeln
         if (!servingsText.isEmpty()) {
             try {
                 servings = Integer.parseInt(servingsText);
@@ -242,27 +234,13 @@ public class ShoppingListController {
             }
         }
 
-        // Zutaten (ggf. skaliert) zur Einkaufsliste hinzufügen
+        // Zutaten skalieren und zur Einkaufsliste hinzufügen
         List<Ingredient> ingredients = selectedRecipe.getScaledIngredients(servings);
-
         for (Ingredient ingredient : ingredients) {
-            boolean found = false;
-
-            for (Article article : shoppingList) {
-                if (ingredient.getName().equalsIgnoreCase(article.getName()) &&
-                        ingredient.getUnit().equalsIgnoreCase(article.getUnit())) {
-                    article.setAmount(article.getAmount() + ingredient.getAmount());
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found) {
-                Article newArticle = new Article(false, ingredient.getName(), ingredient.getAmount(), ingredient.getUnit());
-                shoppingList.add(newArticle);
-            }
+            updateArticle(ingredient.getName(), ingredient.getAmount(), ingredient.getUnit());
         }
 
+        // Einkaufsliste speichern
         saveShoppingList();
         infoDialog("Rezept übernommen", "Die Zutaten wurden zur Einkaufsliste hinzugefügt.");
 
@@ -297,5 +275,26 @@ public class ShoppingListController {
     private void saveShoppingList(){
         File file = new File("data/shopping_list.csv");
         ShoppingListService.saveArticles(shoppingList, file);
+    }
+
+    /**
+     * Aktualisiert die Einkaufsliste: Wenn ein Artikel mit gleichem Namen und gleicher Einheit
+     * bereits vorhanden ist, wird die Menge addiert. Ansonsten wird er neu hinzugefügt.
+     *
+     * @param name   Name des Artikels
+     * @param amount Menge des Artikels
+     * @param unit   Einheit des Artikels
+     */
+    private void updateArticle(String name, double amount, String unit) {
+        for (Article article : shoppingList) {
+            if (article.getName().equalsIgnoreCase(name) &&
+                    article.getUnit().equalsIgnoreCase(unit)) {
+                article.setAmount(article.getAmount() + amount);
+                return;
+            }
+        }
+
+        // Artikel existiert noch nicht → neu hinzufügen
+        shoppingList.add(new Article(false, name, amount, unit));
     }
 }

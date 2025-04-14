@@ -1,5 +1,4 @@
 package com.brh.einkaufsplaner_desktop.controller;
-
 import com.brh.einkaufsplaner_desktop.helper.DialogHelper;
 import com.brh.einkaufsplaner_desktop.helper.ValidationHelper;
 import com.brh.einkaufsplaner_desktop.model.Ingredient;
@@ -248,6 +247,8 @@ public class RecipeManagementController {
 
         // Rezepte nach dem Speichern aktualisieren
         RecipeService.saveRecipes(recipes);
+
+
         onAddRecipe();
 
         // Felder zurücksetzen und deaktivieren
@@ -334,7 +335,7 @@ public class RecipeManagementController {
                     details.append("Zutaten:\n");
 
                     for (Ingredient ing : recipe.getIngredients()) {
-                        details.append(String.format("- %s %.2f %s\n",
+                        details.append(String.format("► %s %.2f %s\n",
                                 ing.getName(),
                                 ing.getAmount(),
                                 ing.getUnit()));
@@ -349,7 +350,6 @@ public class RecipeManagementController {
             }
         }
     }
-
 
     /*
      * Bestätigt, ob der Benutzer das Rezept wirklich verwerfen möchte.

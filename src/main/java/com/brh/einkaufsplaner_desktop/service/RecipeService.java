@@ -1,11 +1,9 @@
 package com.brh.einkaufsplaner_desktop.service;
-
 import com.brh.einkaufsplaner_desktop.helper.DialogHelper;
 import com.brh.einkaufsplaner_desktop.model.Ingredient;
 import com.brh.einkaufsplaner_desktop.model.Recipe;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;

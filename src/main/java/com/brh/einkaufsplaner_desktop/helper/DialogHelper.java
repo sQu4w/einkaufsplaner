@@ -1,10 +1,8 @@
 package com.brh.einkaufsplaner_desktop.helper;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
-
 import java.util.Optional;
 
 /**
@@ -70,18 +68,6 @@ public class DialogHelper {
 
         // Gibt true zurück, wenn der Benutzer "OK" ausgewählt hat
         return result.isPresent() && result.get() == ButtonType.OK;
-    }
-
-    /**
-     * Zeigt einen Bestätigungsdialog für das Löschen eines Elements
-     *
-     * @param itemName Der Name des zu löschenden Elements
-     * @return gibt true zurück, wenn der Benutzer das Löschen bestätigt
-     */
-    public static boolean deleteDialog(String itemName){
-        return confirmDialog(
-                "Löschen bestätigen",
-                "Sind Sie sicher, dass Sie " + itemName + " löschen möchten?");
     }
 
     /**

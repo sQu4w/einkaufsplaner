@@ -1,7 +1,8 @@
 module com.brh.einkaufsplaner_desktop {
-    requires javafx.controls;
     requires javafx.fxml;
     requires org.json;
+    requires javafx.controls;
+    requires org.controlsfx.controls;
 
 
     opens com.brh.einkaufsplaner_desktop to javafx.fxml;

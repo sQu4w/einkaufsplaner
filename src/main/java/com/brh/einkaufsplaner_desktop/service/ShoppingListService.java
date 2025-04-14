@@ -1,8 +1,6 @@
 package com.brh.einkaufsplaner_desktop.service;
-
 import com.brh.einkaufsplaner_desktop.helper.DialogHelper;
 import com.brh.einkaufsplaner_desktop.model.Article;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,5 +77,7 @@ public class ShoppingListService {
             e.printStackTrace();
         }
     }
+
+
 
 }
