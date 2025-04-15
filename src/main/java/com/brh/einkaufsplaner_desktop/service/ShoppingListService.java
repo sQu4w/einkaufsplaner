@@ -55,6 +55,7 @@ public class ShoppingListService {
 
     /**
      * Speichert die Artikel in die CSV-Datei.
+     *
      * @param articles Liste mit Artikeln
      * @param file Datei, in die gespeichert werden soll
      */
@@ -73,11 +74,9 @@ public class ShoppingListService {
                 writer.newLine();
             }
         } catch (IOException e) {
-            DialogHelper.errorDialog("Fehler beim Speichern", "Die Einkaufsliste konnte nicht gespeichert werden.");
+            DialogHelper.errorDialog("Fehler beim Speichern",
+                    "Die Einkaufsliste konnte nicht gespeichert werden.");
             e.printStackTrace();
         }
     }
-
-
-
 }

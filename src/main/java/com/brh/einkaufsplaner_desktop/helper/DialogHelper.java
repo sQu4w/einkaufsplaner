@@ -63,7 +63,7 @@ public class DialogHelper {
         alert.setHeaderText(null);
         alert.setContentText(message);
 
-        // Ziegt den Dialog an und wartet auf die Auswahl des Benutzers
+        // Zeigt den Dialog an und wartet auf die Auswahl des Benutzers
         Optional<ButtonType> result = alert.showAndWait();
 
         // Gibt true zurück, wenn der Benutzer "OK" ausgewählt hat
@@ -99,6 +99,8 @@ public class DialogHelper {
         TextArea textArea = new TextArea(message);
         textArea.setWrapText(true);
         textArea.setEditable(false);
+        textArea.setPrefRowCount(200); // Höhe steuern
+        textArea.setPrefColumnCount(400); // Breite steuern
         textArea.setMaxWidth(Double.MAX_VALUE);
         textArea.setMaxHeight(Double.MAX_VALUE);
 
@@ -109,6 +111,9 @@ public class DialogHelper {
 
         // Setzt den Inhalt des Dialogs
         alert.getDialogPane().setContent(content);
+        alert.getDialogPane().setPrefSize(600, 500); // Größe des Dialogs anpassen
+
+
         alert.showAndWait();
     }
 }

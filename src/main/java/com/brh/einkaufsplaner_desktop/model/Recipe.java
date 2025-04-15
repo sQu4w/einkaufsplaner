@@ -57,8 +57,8 @@ public class Recipe {
             // Fügt die skalierte Zutat der Liste hinzu
             scaledList.add(scaled);
         }
+        // Gibt die skalierte Zutatenliste zurück
         return scaledList;
     }
-
 }
 

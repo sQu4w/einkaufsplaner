@@ -13,13 +13,15 @@ public class ValidationHelper {
         String text = tf.getText().trim();
 
         if (isNullOrBlank(text)) {
-            DialogHelper.warningDialog("Eingabefehler", fieldName + " darf nicht leer sein.");
+            DialogHelper.warningDialog("Eingabefehler", fieldName +
+                    " darf nicht leer sein.");
             tf.requestFocus();
             return false;
         }
 
         if (!isLettersOnly(text)) {
-            DialogHelper.warningDialog("Ungültige Eingabe", fieldName + " darf nur Buchstaben enthalten.");
+            DialogHelper.warningDialog("Ungültige Eingabe",
+                    fieldName + " darf nur Buchstaben enthalten.");
             tf.requestFocus();
             return false;
         }
@@ -27,35 +29,45 @@ public class ValidationHelper {
         return true;
     }
 
-
     /**
-     * Validiert die Menge: darf nicht leer sein, muss eine Zahl > 0 sein.
+     * Validiert die Menge: darf nicht leer sein, muss eine Zahl größer als 0 sein.
+     *
+     * @param tf das Textfeld, das die Menge enthält
      */
     public static boolean validateAmount(TextField tf) {
+
+        // Lese den Text aus dem Textfeld und trimme Leerzeichen
         String text = tf.getText().trim();
 
+        // Überprüfen, ob der Text null oder leer ist
         if (isNullOrBlank(text)) {
-            DialogHelper.warningDialog("Eingabefehler", "Menge darf nicht leer sein.");
+            DialogHelper.warningDialog("Eingabefehler",
+                    "Menge darf nicht leer sein.");
+
+            // Setze den Fokus zurück auf das Textfeld
             tf.requestFocus();
             return false;
         }
 
         try {
+            // Ersetze Komma durch Punkt für die Umwandlung in eine Zahl
             text = text.replace(",", ".");
             double value = Double.parseDouble(text);
 
             if (value <= 0) {
-                DialogHelper.warningDialog("Ungültige Eingabe", "Menge muss größer als 0 sein.");
+                DialogHelper.warningDialog("Ungültige Eingabe",
+                        "Menge muss größer als 0 sein.");
                 tf.requestFocus();
                 return false;
             }
 
         } catch (NumberFormatException e) {
-            DialogHelper.errorDialog("Ungültige Eingabe", "Menge muss eine gültige Zahl sein.");
+            DialogHelper.errorDialog("Ungültige Eingabe",
+                    "Menge muss eine gültige Zahl sein.");
             tf.requestFocus();
             return false;
         }
-
+        // Wenn alle Überprüfungen bestanden sind, ist die Eingabe gültig
         return true;
     }
 
@@ -66,13 +78,15 @@ public class ValidationHelper {
         String text = tf.getText().trim();
 
         if (text.isEmpty()){
-            DialogHelper.warningDialog("Eingabefehler", "Einheit darf nicht leer sein.");
+            DialogHelper.warningDialog("Eingabefehler",
+                    "Einheit darf nicht leer sein.");
             tf.requestFocus();
             return false;
         }
 
         if (!isLettersOnly(text)) {
-            DialogHelper.warningDialog("Ungültige Eingabe", "Einheit darf nur Buchstaben enthalten.");
+            DialogHelper.warningDialog("Ungültige Eingabe",
+                    "Einheit darf nur Buchstaben enthalten.");
             tf.requestFocus();
             return false;
         }
@@ -87,7 +101,8 @@ public class ValidationHelper {
         String text = tf.getText().trim();
 
         if (isNullOrBlank(text)) {
-            DialogHelper.warningDialog("Eingabefehler", "Portionen dürfen nicht leer sein.");
+            DialogHelper.warningDialog("Eingabefehler",
+                    "Portionen dürfen nicht leer sein.");
             tf.requestFocus();
             return false;
         }
@@ -95,13 +110,15 @@ public class ValidationHelper {
         try {
             int value = Integer.parseInt(text);
             if (value <= 0) {
-                DialogHelper.warningDialog("Ungültige Eingabe", "Portionen müssen größer als 0 sein.");
+                DialogHelper.warningDialog("Ungültige Eingabe",
+                        "Portionen müssen größer als 0 sein.");
                 tf.requestFocus();
                 return false;
             }
 
         } catch (NumberFormatException e) {
-            DialogHelper.errorDialog("Ungültige Eingabe", "Portionen müssen eine ganze Zahl sein.");
+            DialogHelper.errorDialog("Ungültige Eingabe",
+                    "Portionen müssen eine ganze Zahl sein.");
             tf.requestFocus();
             return false;
         }

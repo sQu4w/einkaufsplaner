@@ -186,7 +186,17 @@
         "name": "Zitronenschale"
       }
     ],
-    "baseServings": 8,
+    "baseServings": 4,
     "preparation": "Butter, Zucker und Eier schaumig schlagen. \nMehl und Backpulver mischen und unterrühren. \nZitronensaft und Zitronenschale zugeben. \nIn eine gefettete Form geben und bei 180 °C ca. 40 Minuten backen."
+  },
+  {
+    "name": "Rezept",
+    "ingredients": [{
+      "amount": 1,
+      "unit": "stück",
+      "name": "Zutat"
+    }],
+    "baseServings": 2,
+    "preparation": "Zubereitungstext"
   }
 ]

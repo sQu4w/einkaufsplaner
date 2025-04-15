@@ -53,7 +53,8 @@ public class ShoppingListController {
     private void goToRecipeManagement() throws IOException {
 
         // Lade die FXML-Datei für die Rezeptverwaltung
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/brh/einkaufsplaner_desktop/recipemanagement.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/com/brh/einkaufsplaner_desktop/recipemanagement.fxml"));
         Parent view = loader.load();
         Stage window = (Stage) openRecipeManagementBtn.getScene().getWindow();
         window.setScene(new Scene(view));
@@ -76,9 +77,9 @@ public class ShoppingListController {
         articleItemCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         articleAmountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
         articleUnitCol.setCellValueFactory(new PropertyValueFactory<>("unit"));
+        articleBoughtCol.setCellValueFactory(new PropertyValueFactory<>("bought"));
 
         // Checkbox-Spalte für "Gekauft" erstellen
-        articleBoughtCol.setCellValueFactory(new PropertyValueFactory<>("bought"));
         articleBoughtCol.setCellFactory(CheckBoxTableCell.forTableColumn(articleBoughtCol));
 
         // Lädt die Rezepte in die ComboBox
@@ -91,17 +92,18 @@ public class ShoppingListController {
     @FXML
     private void onAddArticle() {
 
+        // Werte extrahieren
+        String name = articleNameTF.getText().trim();
+        double amount = Double.parseDouble(
+                articleAmountTF.getText().trim().replace(",", "."));
+        String unit = articleUnitTF.getText().trim();
+
         // Eingabefelder validieren
         if (!ValidationHelper.validateName(articleNameTF, "Artikelname")) return;
         if (!ValidationHelper.validateAmount(articleAmountTF)) return;
         if (!ValidationHelper.validateUnit(articleUnitTF)) return;
 
-        // Werte extrahieren
-        String name = articleNameTF.getText().trim();
-        double amount = Double.parseDouble(articleAmountTF.getText().trim().replace(",", "."));
-        String unit = articleUnitTF.getText().trim();
-
-        // Artikel erstellen und zur Liste hinzufügen
+        // Artikel zur Einkaufsliste hinzufügen und die Tabelle aktualisieren
         updateArticle(name, amount, unit);
 
         // Eingabefelder leeren
@@ -179,13 +181,23 @@ public class ShoppingListController {
         // gibt den Index des aktuell ausgewählten Artikels zurück
         int selectedIndex = shoppingListTV.getSelectionModel().getSelectedIndex();
 
-        // Ist der Index kleiner als die Größe der Liste - 1,
-        // dann kann der Artikel nach unten verschoben werden
+        // Überprüfen, ob ein Artikel ausgewählt wurde (Index >= 0)
+        // und ob dieser Artikel verschoben werden kann (nicht das letzte Element in der Liste)
         if (selectedIndex >= 0 && selectedIndex < shoppingList.size() - 1) {
+
+            // Den aktuell ausgewählten Artikel aus der Liste holen
             Article selectedArticle = shoppingList.get(selectedIndex);
+
+            // Den Artikel von der aktuellen Position entfernen
             shoppingList.remove(selectedIndex);
+
+            // Den Artikel eine Position weiter unten wieder einfügen
             shoppingList.add(selectedIndex + 1, selectedArticle);
+
+            // Den verschobenen Artikel in der Tabelle auswählen
             shoppingListTV.getSelectionModel().select(selectedIndex + 1);
+
+            // Speichern der Einkaufsliste
             saveShoppingList();
         }
     }
@@ -202,7 +214,8 @@ public class ShoppingListController {
 
         // Wenn kein Rezept ausgewählt ist → Dialog anzeigen und abbrechen
         if (selectedRecipeName == null || selectedRecipeName.isEmpty()) {
-            warningDialog("Kein Rezept ausgewählt", "Bitte wähle ein Rezept aus der Liste.");
+            warningDialog("Kein Rezept ausgewählt",
+                    "Bitte wähle ein Rezept aus der Liste.");
             return;
         }
 
@@ -218,7 +231,8 @@ public class ShoppingListController {
         }
 
         if (selectedRecipe == null) {
-            errorDialog("Rezept nicht gefunden", "Das Rezept konnte nicht geladen werden.");
+            errorDialog("Rezept nicht gefunden",
+                    "Das Rezept konnte nicht geladen werden.");
             return;
         }
 
@@ -229,7 +243,9 @@ public class ShoppingListController {
                 servings = Integer.parseInt(servingsText);
                 if (servings <= 0) throw new NumberFormatException();
             } catch (NumberFormatException e) {
-                errorDialog("Ungültige Eingabe", "Bitte gib eine gültige Anzahl an Portionen ein oder lasse das Feld leer.");
+                errorDialog("Ungültige Eingabe",
+                        "Bitte gib eine gültige Anzahl " +
+                                "an Portionen ein oder lasse das Feld leer.");
                 return;
             }
         }
@@ -242,7 +258,8 @@ public class ShoppingListController {
 
         // Einkaufsliste speichern
         saveShoppingList();
-        infoDialog("Rezept übernommen", "Die Zutaten wurden zur Einkaufsliste hinzugefügt.");
+        infoDialog("Rezept übernommen",
+                "Die Zutaten wurden zur Einkaufsliste hinzugefügt.");
 
         // Felder zurücksetzen
         selectServingsTF.clear();

@@ -64,7 +64,8 @@ public class RecipeManagementController {
         if (!confirmCancelRecipe()) return;
 
         // Lade die FXML-Datei für die Einkaufsliste
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/brh/einkaufsplaner_desktop/shoppinglist.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/com/brh/einkaufsplaner_desktop/shoppinglist.fxml"));
         Parent view = loader.load();
 
         // Erzeugt das Fenster und setzt die Szene auf die geladene FXML-Datei
@@ -152,7 +153,8 @@ public class RecipeManagementController {
         }
 
         // Wenn das Rezept nicht gefunden wurde
-        DialogHelper.errorDialog("Fehler", "Das Rezept konnte nicht geladen werden.");
+        DialogHelper.errorDialog("Fehler",
+                "Das Rezept konnte nicht geladen werden.");
     }
 
 
@@ -162,7 +164,8 @@ public class RecipeManagementController {
         String selectedName = recipeLV.getSelectionModel().getSelectedItem();
 
         if (selectedName == null) {
-            DialogHelper.warningDialog("Keine Auswahl", "Bitte wähle ein Rezept aus der Liste aus, um es zu löschen.");
+            DialogHelper.warningDialog("Keine Auswahl",
+                    "Bitte wähle ein Rezept aus der Liste aus, um es zu löschen.");
             return;
         }
 
@@ -186,7 +189,8 @@ public class RecipeManagementController {
             // Datei aktualisieren
             RecipeService.saveRecipes(recipes);
         } else {
-            DialogHelper.errorDialog("Fehler", "Das Rezept konnte nicht gefunden werden.");
+            DialogHelper.errorDialog("Fehler",
+                    "Das Rezept konnte nicht gefunden werden.");
         }
 
         // Felder zurücksetzen, falls das gelöschte Rezept gerade bearbeitet wurde
@@ -200,6 +204,9 @@ public class RecipeManagementController {
     }
 
 
+    /**
+     * Speichert das Rezept in der Liste und aktualisiert die Datei.
+     */
     @FXML
     private void onSaveRecipe() {
         String name = recipeNameTF.getText().trim();
@@ -210,18 +217,23 @@ public class RecipeManagementController {
         if (!ValidationHelper.validateServings(servingsTF)) return;
 
         if (ingredientList.isEmpty()) {
-            DialogHelper.warningDialog("Keine Zutaten", "Bitte füge mindestens eine Zutat hinzu.");
+            DialogHelper.warningDialog("Keine Zutaten",
+                    "Bitte füge mindestens eine Zutat hinzu.");
             return;
         }
 
-        int baseServings = (int) Double.parseDouble(servingsTF.getText().trim().replace(",", "."));
+        // Werte konvertieren und extrahieren
+        int baseServings = (int) Double.parseDouble(
+                servingsTF.getText().trim().replace(",", "."));
 
-
+        // Zutatenliste kopieren
         List<Ingredient> ingredientsCopy = new ArrayList<>(ingredientList);
 
         // Falls ein bestehendes Rezept bearbeitet wird
         if (recipeInEdit != null) {
-            String oldName = recipeInEdit.getName(); // Alten Namen merken
+
+            // Rezeptname aktualisieren
+            String oldName = recipeInEdit.getName();
 
             // Bestehendes Rezept aktualisieren
             recipeInEdit.setName(name);
@@ -235,21 +247,24 @@ public class RecipeManagementController {
                 recipeLV.getItems().set(index, name);
             }
 
-            DialogHelper.infoDialog("Rezept aktualisiert", "Das Rezept wurde erfolgreich aktualisiert.");
+            DialogHelper.infoDialog("Rezept aktualisiert",
+                    "Das Rezept wurde erfolgreich aktualisiert.");
         } else {
-            // Neues Rezept hinzufügen
+
+            // Neues Rezept erstellen
             Recipe recipe = new Recipe(name, baseServings, ingredientsCopy, preparation);
             recipes.add(recipe);
             recipeLV.getItems().add(recipe.getName());
 
-            DialogHelper.infoDialog("Rezept gespeichert", "Das Rezept wurde erfolgreich gespeichert.");
+            DialogHelper.infoDialog("Rezept gespeichert",
+                    "Das Rezept wurde erfolgreich gespeichert.");
         }
 
         // Rezepte nach dem Speichern aktualisieren
         RecipeService.saveRecipes(recipes);
 
-
-        onAddRecipe();
+        // Eingabefelder zurücksetzen
+        resetRecipeForm();
 
         // Felder zurücksetzen und deaktivieren
         setInputFieldsDisabled(true);
@@ -268,7 +283,7 @@ public class RecipeManagementController {
     }
 
     /**
-     * Fügt eine Zutat zur Liste hinzu.
+     * Fügt eine Zutat zur Zutatenliste hinzu.
      */
     @FXML
     private void onAddIngredient(){
@@ -280,7 +295,8 @@ public class RecipeManagementController {
 
         // Werte extrahieren
         String name = ingredientNameTF.getText().trim();
-        double amount = Double.parseDouble(ingredientAmountTF.getText().trim().replace(",", "."));
+        double amount = Double.parseDouble(
+                ingredientAmountTF.getText().trim().replace(",", "."));
         String unit = ingredientUnitTF.getText().trim();
 
         // Zutat erstellen und zur Liste hinzufügen
@@ -302,7 +318,8 @@ public class RecipeManagementController {
         Ingredient selectedIngredient = ingredientListTV.getSelectionModel().getSelectedItem();
 
         if (selectedIngredient == null) {
-            DialogHelper.warningDialog("Keine Auswahl", "Bitte wähle eine Zutat aus der Liste aus, um sie zu löschen.");
+            DialogHelper.warningDialog("Keine Auswahl",
+                    "Bitte wähle eine Zutat aus der Liste aus, um sie zu löschen.");
             return;
         }
 
