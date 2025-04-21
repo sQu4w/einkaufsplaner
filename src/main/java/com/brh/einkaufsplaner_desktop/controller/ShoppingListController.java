@@ -1,4 +1,5 @@
 package com.brh.einkaufsplaner_desktop.controller;
+import com.brh.einkaufsplaner_desktop.helper.DialogHelper;
 import com.brh.einkaufsplaner_desktop.helper.ValidationHelper;
 import com.brh.einkaufsplaner_desktop.model.Article;
 import com.brh.einkaufsplaner_desktop.model.Ingredient;
@@ -94,14 +95,16 @@ public class ShoppingListController {
 
         // Werte extrahieren
         String name = articleNameTF.getText().trim();
-        double amount = Double.parseDouble(
-                articleAmountTF.getText().trim().replace(",", "."));
         String unit = articleUnitTF.getText().trim();
 
         // Eingabefelder validieren
         if (!ValidationHelper.validateName(articleNameTF, "Artikelname")) return;
         if (!ValidationHelper.validateAmount(articleAmountTF)) return;
         if (!ValidationHelper.validateUnit(articleUnitTF)) return;
+
+        // Menge parsen und in Double umwandeln
+        double amount = Double.parseDouble(
+                articleAmountTF.getText().trim().replace(",", "."));
 
         // Artikel zur Einkaufsliste hinzufügen und die Tabelle aktualisieren
         updateArticle(name, amount, unit);

@@ -1,4 +1,5 @@
 package com.brh.einkaufsplaner_desktop.controller;
+import com.brh.einkaufsplaner_desktop.helper.DialogHelper;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +18,8 @@ public class HomeScreenController {
      */
     @FXML
     private void goToShoppingList() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/brh/einkaufsplaner_desktop/shoppinglist.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/com/brh/einkaufsplaner_desktop/shoppinglist.fxml"));
         Parent view = loader.load();
 
         Stage window = (Stage) openShoppingListBtn.getScene().getWindow();
@@ -30,7 +32,8 @@ public class HomeScreenController {
      */
     @FXML
     private void goToRecipeManagement() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/brh/einkaufsplaner_desktop/recipemanagement.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/com/brh/einkaufsplaner_desktop/recipemanagement.fxml"));
         Parent view = loader.load();
 
         Stage window = (Stage) openRecipeManagementBtn.getScene().getWindow();

@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class RecipeManagementController {
 
     // Buttons
@@ -40,6 +39,8 @@ public class RecipeManagementController {
 
     // Tabelle für Zutaten
     @FXML private TableView<Ingredient> ingredientListTV;
+
+    // Spalten der Zutatenliste in der Tabelle
     @FXML private TableColumn<Ingredient, String> ingredientItemCol;
     @FXML private TableColumn<Ingredient, Double> ingredientAmountCol;
     @FXML private TableColumn<Ingredient, String> ingredientUnitCol;
@@ -81,8 +82,11 @@ public class RecipeManagementController {
      */
     @FXML
     private void initialize() {
+
+        // Setzt die Tabelle für die Zutatenliste
         ingredientListTV.setItems(ingredientList);
 
+        // Erstellt die Spalten der Zutatenliste
         ingredientItemCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         ingredientAmountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
         ingredientUnitCol.setCellValueFactory(new PropertyValueFactory<>("unit"));
@@ -115,6 +119,9 @@ public class RecipeManagementController {
 
         // Aktivieren der Eingabefelder
         setInputFieldsDisabled(false);
+
+        // Zeigt den Hinweisdialog nur einmal an
+        DialogHelper.inputHintDialog();
     }
 
     /**
@@ -375,6 +382,8 @@ public class RecipeManagementController {
      * @return true, wenn das Rezept verworfen werden soll, sonst false
      */
     private boolean confirmCancelRecipe() {
+
+        // Überprüfen, ob ein Rezept bearbeitet wird
         if (recipeInEdit == null && recipeNameTF.getText().trim().isEmpty()) {
             return true;
         }

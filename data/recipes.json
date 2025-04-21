@@ -18,7 +18,7 @@
         "name": "Eier"
       }
     ],
-    "baseServings": 4,
+    "baseServings": 1,
     "preparation": "Mehl, Milch, Eier und Salz zu einem glatten Teig verrühren. \nEtwas Butter in einer Pfanne erhitzen und aus dem Teig nacheinander Pfannkuchen ausbacken."
   },
   {
@@ -188,15 +188,5 @@
     ],
     "baseServings": 4,
     "preparation": "Butter, Zucker und Eier schaumig schlagen. \nMehl und Backpulver mischen und unterrühren. \nZitronensaft und Zitronenschale zugeben. \nIn eine gefettete Form geben und bei 180 °C ca. 40 Minuten backen."
-  },
-  {
-    "name": "Rezept",
-    "ingredients": [{
-      "amount": 1,
-      "unit": "stück",
-      "name": "Zutat"
-    }],
-    "baseServings": 2,
-    "preparation": "Zubereitungstext"
   }
 ]

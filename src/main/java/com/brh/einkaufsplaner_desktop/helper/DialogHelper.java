@@ -10,6 +10,9 @@ import java.util.Optional;
  */
 public class DialogHelper {
 
+    // Variable, um zu verfolgen, ob der Hinweis zur Zutatenangabe bereits angezeigt wurde
+    private static boolean inputHint = false;
+
     /**
      * Zeigt einen Informationsdialog.
      * @param title Titel des Dialogs
@@ -115,5 +118,19 @@ public class DialogHelper {
 
 
         alert.showAndWait();
+    }
+
+    /**
+     * Zeigt einen Hinweisdialog zur Zutatenangabe an.
+     * Dieser Dialog wird nur einmal angezeigt.
+     */
+    public static void inputHintDialog() {
+        if (!inputHint) {
+            inputHint = true;
+            infoDialog("Hinweis zur Zutatenangabe",
+                    "Bitte achte darauf, die Einheiten und Namen deiner Zutaten möglichst einheitlich einzugeben.\n\n" +
+                            "Nur so kann später bei der Umrechnung und beim Hinzufügen zur Einkaufsliste korrekt zusammengefasst werden.\n" +
+                            "Beispiel: 'Tomate' mit Einheit 'Stück' und nicht einmal 'Stück', einmal 'Stk.' oder 'g'.");
+        }
     }
 }
