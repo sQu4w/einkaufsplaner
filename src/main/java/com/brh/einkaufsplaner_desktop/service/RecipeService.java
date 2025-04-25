@@ -93,42 +93,32 @@ public class RecipeService {
     }
 
     /**
-     * Konvertiert ein Rezept-Objekt in ein JSON-Objekt.
+     * Erstellt ein JSON-Objekt aus einem Rezept-Objekt.
      *
      * @param recipe Rezept-Objekt
      * @return JSON-Objekt
      */
     private static JSONObject getJsonObject(Recipe recipe) {
 
-        // Erstelle ein JSON-Objekt für das Rezept
         JSONObject recipeObj = new JSONObject();
-        
-        // Füge die Rezeptdaten zum JSON-Objekt hinzu
         recipeObj.put("name", recipe.getName());
         recipeObj.put("baseServings", recipe.getBaseServings());
         recipeObj.put("preparation", recipe.getPreparation());
 
-        // Erstelle ein JSON-Array für die Zutaten
         JSONArray ingredientsArray = new JSONArray();
-        
-        // Iteriere über die Zutaten und füge sie dem JSON-Array hinzu
         for (Ingredient ing : recipe.getIngredients()) {
-            
-            // Erstelle ein JSON-Objekt für jede Zutat
+
             JSONObject ingObj = new JSONObject();
-            
-            // Füge die Zutatendaten zum JSON-Objekt hinzu
             ingObj.put("name", ing.getName());
             ingObj.put("amount", ing.getAmount());
             ingObj.put("unit", ing.getUnit());
-            
-            // Füge das Zutat-Objekt zum Zutaten-Array hinzu
+
             ingredientsArray.put(ingObj);
         }
 
-        // Füge das Zutaten-Array zum Rezept-Objekt hinzu
-        // und gebe das Rezept-Objekt zurück
         recipeObj.put("ingredients", ingredientsArray);
         return recipeObj;
     }
 }
+
+

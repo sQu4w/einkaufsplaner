@@ -21,7 +21,7 @@ public class HomeScreenController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/com/brh/einkaufsplaner_desktop/shoppinglist.fxml"));
         Parent view = loader.load();
-
+        
         Stage window = (Stage) openShoppingListBtn.getScene().getWindow();
         window.setScene(new Scene(view));
         window.show();

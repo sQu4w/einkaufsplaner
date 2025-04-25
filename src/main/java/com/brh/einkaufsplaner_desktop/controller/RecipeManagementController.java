@@ -164,7 +164,9 @@ public class RecipeManagementController {
                 "Das Rezept konnte nicht geladen werden.");
     }
 
-
+    /**
+     * Löscht das ausgewählte Rezept aus der Liste.
+     */
     @FXML
     private void onDeleteRecipe() {
         if (!confirmCancelRecipe()) return;
@@ -375,11 +377,10 @@ public class RecipeManagementController {
         }
     }
 
-    /*
+    /**
      * Bestätigt, ob der Benutzer das Rezept wirklich verwerfen möchte.
-     * Wenn ja, werden die Eingabefelder zurückgesetzt und deaktiviert.
      *
-     * @return true, wenn das Rezept verworfen werden soll, sonst false
+     * @return true, wenn der Benutzer das Rezept verwerfen möchte, sonst false
      */
     private boolean confirmCancelRecipe() {
 
@@ -420,12 +421,10 @@ public class RecipeManagementController {
         setInputFieldsDisabled(true);
     }
 
-    /*
-     * Diese Methode wird aufgerufen, wenn der Benutzer die Rezeptliste ändert.
-     * Sie aktiviert oder deaktiviert die Eingabefelder für Rezepte und Zutaten,
-     * je nachdem, ob ein Rezept hinzugefügt oder bearbeitet wird.
+    /**
+     * Deaktiviert oder aktiviert die Eingabefelder und Buttons.
      *
-     * @param disabled true, um die Eingabefelder zu deaktivieren, false, um sie zu aktivieren
+     * @param disabled true, um die Felder zu deaktivieren, false, um sie zu aktivieren
      */
     private void setInputFieldsDisabled(boolean disabled) {
 
