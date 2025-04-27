@@ -2,9 +2,21 @@
   {
     "name": "Pfannkuchen",
     "ingredients": [
-      {"amount": 200, "unit": "g", "name": "Mehl"},
-      {"amount": 300, "unit": "ml", "name": "Milch"},
-      {"amount": 2, "unit": "Stück", "name": "Eier"}
+      {
+        "amount": 200,
+        "unit": "g",
+        "name": "Mehl"
+      },
+      {
+        "amount": 300,
+        "unit": "ml",
+        "name": "Milch"
+      },
+      {
+        "amount": 2,
+        "unit": "Stück",
+        "name": "Eier"
+      }
     ],
     "baseServings": 1,
     "preparation": "Mehl, Milch, Eier und Salz zu einem glatten Teig verrühren."
@@ -178,11 +190,21 @@
     "preparation": "Butter, Zucker und Eier schaumig schlagen. \nMehl und Backpulver mischen und unterrühren. \nZitronensaft und Zitronenschale zugeben. \nIn eine gefettete Form geben und bei 180 °C ca. 40 Minuten backen."
   },
   {
-    "name": "Gulasch",
+    "name": "asda",
     "ingredients": [{
-      "amount": 1,
-      "unit": "stück",
-      "name": "ei"
+      "amount": 2,
+      "unit": "asd",
+      "name": "asd"
+    }],
+    "baseServings": 2,
+    "preparation": ""
+  },
+  {
+    "name": "Omlett",
+    "ingredients": [{
+      "amount": 2,
+      "unit": "Stück",
+      "name": "Ei"
     }],
     "baseServings": 2,
     "preparation": ""

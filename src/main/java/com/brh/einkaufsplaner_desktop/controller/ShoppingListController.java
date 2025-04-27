@@ -306,15 +306,17 @@ public class ShoppingListController {
      * @param unit   Einheit des Artikels
      */
     private void updateArticle(String name, double amount, String unit) {
+
         for (Article article : shoppingList) {
-            if (article.getName().equalsIgnoreCase(name) &&
-                    article.getUnit().equalsIgnoreCase(unit)) {
+            boolean sameName = article.getName().equalsIgnoreCase(name);
+            boolean sameUnit = article.getUnit().equalsIgnoreCase(unit);
+
+            if (sameName && sameUnit) {
                 article.setAmount(article.getAmount() + amount);
                 return;
             }
         }
-
-        // Artikel existiert noch nicht → neu hinzufügen
+        // Wenn kein passender Artikel gefunden wurde, erstelle einen neuen
         shoppingList.add(new Article(false, name, amount, unit));
     }
 }
