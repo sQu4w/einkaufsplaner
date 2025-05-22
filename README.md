@@ -27,11 +27,11 @@ MealMatch ist eine JavaFX-Desktopanwendung zur Verwaltung von Einkaufslisten und
  
 
 ## Projektstruktur (Auszug)
-
+``````
 src/
 ├── controller/         → JavaFX-Controller für die Benutzeroberfläche
-├── model/              → Datenmodelle wie Recipe, Ingredient, Article
-├── service/            → Verarbeitung & Speicherung (z. B. JSON)
+├── model/              → Datenmodelle
+├── service/            → Verarbeitung & Speicherung
 ├── helper/             → Validierung und Dialoge
 ├── App.java            → Startpunkt der Anwendung
 resources/
@@ -40,3 +40,4 @@ resources/
 data/
 ├── recipes.json        → Gespeicherte Rezepte
 ├── shopping_list.csv   → Einkaufsliste
+``````
