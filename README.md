@@ -12,7 +12,7 @@ MealMatch ist eine JavaFX-Desktopanwendung zur Verwaltung von Einkaufslisten und
 
 ## Technologien
 
-- Java 17  
+- Java 17 LTS
 - JavaFX  
 - MVC-Struktur  
 - JSON/CSV 
