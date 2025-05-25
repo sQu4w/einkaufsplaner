@@ -1,6 +1,6 @@
-# MealMatch – Einkaufsplaner
+# Einkaufsplaner
 
-MealMatch ist eine JavaFX-Desktopanwendung zur Verwaltung von Einkaufslisten und Rezepten.  
+Einkaufsplaner ist eine Desktopanwendung zur Verwaltung von Einkaufslisten und Rezepten.  
 
 ## Funktionen
 
